@@ -1,8 +1,8 @@
 document.querySelector("[data-buttons]").addEventListener("click", (event) => {
-  getOrdInApi(event.target.id);
+  createOrd(event.target.id);
 });
 
-async function getOrdInApi(ord) {
+async function createOrd(ord) {
   const htmlElements = document.querySelector("main");
   htmlElements.remove();
 
@@ -34,6 +34,8 @@ async function createCardPokemon(arrayIdPokemon) {
     );
     const objPokemon = await promisePokemon.json();
 
+    let main = document.createElement("main");
+
     let card = document.createElement("span");
 
     const linkImgPokemon = objPokemon.sprites.front_default;
@@ -51,7 +53,8 @@ async function createCardPokemon(arrayIdPokemon) {
     card.appendChild(imgPokemon);
     card.appendChild(paragId);
     card.appendChild(paragName);
-    body.appendChild(card);
+    main.appendChild(card);
+    body.appendChild(main);
   }
 }
 
