@@ -1,3 +1,3 @@
 # POKEDEX
 
-Melhorando abilidades de codigos async
+Melhorando abilidades de codigos async.
