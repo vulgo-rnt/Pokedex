@@ -12,16 +12,33 @@ async function getAllInApi(ord) {
   return obj.results;
 }
 
-console.log(await getAllInApi("pokemon"));
-
 async function createCardPokemon(getApi) {
-  for (pokemon of getApi) {
+  const body = document.querySelector("body");
+  for (let pokemon of getApi) {
     const promisePokemon = await fetch(pokemon.url);
     const objPokemon = await promisePokemon.json();
 
     let card = document.createElement("span");
 
-    const linkImgPokemon = objPokemon.sprite.front_default;
-    const imgPokemon = (document.createElement("img").src = linkImgPokemon);
+    const linkImgPokemon = objPokemon.sprites.front_default;
+    let imgPokemon = document.createElement("img");
+    imgPokemon.src = linkImgPokemon;
+
+    const namePokemon = objPokemon.name;
+    let paragName = document.createElement("p");
+    paragName.innerText = namePokemon;
+
+    const idPokemon = objPokemon.id;
+    let paragId = document.createElement("p");
+    paragId.innerText = idPokemon;
+
+    card.appendChild(imgPokemon);
+    card.appendChild(paragId);
+    card.appendChild(paragName);
+    body.appendChild(card);
   }
 }
+
+const test = await getAllInApi("pokemon");
+
+await createCardPokemon(test);
