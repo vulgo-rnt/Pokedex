@@ -1,3 +1,7 @@
+document.getElementById("return").addEventListener("click", () => {
+  location.reload();
+});
+
 document.querySelector("[data-buttons]").addEventListener("click", (event) => {
   createOrd(event.target);
 });
@@ -86,7 +90,3 @@ function getIdPokemon(urlPokemon) {
   let pokemonId = urlPokemon.split("/");
   return pokemonId[pokemonId.length - 2];
 }
-
-document.getElementById("return").addEventListener("click", () => {
-  location.reload();
-});
