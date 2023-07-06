@@ -1,3 +1,5 @@
+var pagNum = 0;
+
 document.getElementById("return").addEventListener("click", () => {
   location.reload();
 });
@@ -19,6 +21,8 @@ async function createOrd(ord) {
     const array = arrayIdPokemons(obj.results);
 
     createCardPokemon(array);
+
+    createNextNumPag(obj.results.length);
   } else if (Number(ord.id)) {
     const objApi = await fetch(
       `https://pokeapi.co/api/v2/generation/${ord.id}`
@@ -28,6 +32,8 @@ async function createOrd(ord) {
     const array = arrayIdPokemons(obj.pokemon_species);
 
     createCardPokemon(array);
+    console.log(obj.pokemon_species.length);
+    createNextNumPag(obj.pokemon_species.length);
   } else {
     const objApi = await fetch(
       `https://pokeapi.co/api/v2/type/${ord.innerText.toLowerCase()}`
@@ -37,6 +43,8 @@ async function createOrd(ord) {
     const array = arrayIdPokemons(obj.pokemon);
 
     createCardPokemon(array);
+    console.log(obj.pokemon.length);
+    createNextNumPag(obj.pokemon.length);
   }
 }
 
@@ -89,4 +97,18 @@ function arrayIdPokemons(objPokemon) {
 function getIdPokemon(urlPokemon) {
   let pokemonId = urlPokemon.split("/");
   return pokemonId[pokemonId.length - 2];
+}
+
+function createNextNumPag(sizeResults) {
+  let lengthPags = Math.ceil(sizeResults / 50);
+
+  let div = document.createElement("div");
+  div.classList = "next_button";
+
+  for (let i = 0; i <= lengthPags; i++) {
+    let button = document.createElement("button");
+    button.innerText = i;
+    div.appendChild(button);
+  }
+  document.querySelector("main").appendChild(div);
 }
