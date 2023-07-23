@@ -1,114 +1,72 @@
-var pagNum = 0;
+import { Pokemon } from "./ClassPokemon.js";
+import arrayIdPokemon from "./utils/arrayIdPokemon.js";
 
-document.getElementById("return").addEventListener("click", () => {
+const returnButton = document.getElementById("return");
+
+returnButton.addEventListener("click", () => {
   location.reload();
 });
-
+//--------------------------------------------------------------------------------
 document.querySelector("[data-buttons]").addEventListener("click", (event) => {
   createOrd(event.target);
 });
 
 async function createOrd(ord) {
-  document.querySelector("main").remove();
-  const ordGeneration = ord.id;
+  document.querySelector("main").innerHTML = "";
 
-  if (ordGeneration === "all") {
+  if (ord.parentNode.id === "all") {
     const objApi = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?limit=50&offset=0`
+      `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1281`
     );
     const obj = await objApi.json();
 
-    const array = arrayIdPokemons(obj.results);
+    const array = arrayIdPokemon(obj.results);
 
-    createCardPokemon(array);
-
-    createNextNumPag(obj.results.length);
+    fetchInApi(array);
   } else if (Number(ord.id)) {
     const objApi = await fetch(
       `https://pokeapi.co/api/v2/generation/${ord.id}`
     );
     const obj = await objApi.json();
 
-    const array = arrayIdPokemons(obj.pokemon_species);
+    const array = arrayIdPokemon(obj.pokemon_species);
 
-    createCardPokemon(array);
-    console.log(obj.pokemon_species.length);
-    createNextNumPag(obj.pokemon_species.length);
+    fetchInApi(array);
   } else {
     const objApi = await fetch(
       `https://pokeapi.co/api/v2/type/${ord.innerText.toLowerCase()}`
     );
     const obj = await objApi.json();
 
-    const array = arrayIdPokemons(obj.pokemon);
+    const array = arrayIdPokemon(obj.pokemon);
 
-    createCardPokemon(array);
-    console.log(obj.pokemon.length);
-    createNextNumPag(obj.pokemon.length);
+    await fetchInApi(array);
   }
 }
 
-async function createCardPokemon(arrayIdPokemon) {
-  const body = document.querySelector("body");
-
-  for (let i = 0; i < 50; i++) {
-    const promisePokemon = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${arrayIdPokemon[i]}`
-    );
-    const objPokemon = await promisePokemon.json();
-
-    let main = document.createElement("main");
-
-    let card = document.createElement("span");
-
-    const linkImgPokemon =
-      objPokemon.sprites.other["official-artwork"].front_default;
-    let imgPokemon = document.createElement("img");
-    imgPokemon.src = linkImgPokemon;
-    imgPokemon.classList = "imgPokemon";
-
-    const namePokemon = objPokemon.name;
-    let paragName = document.createElement("p");
-    paragName.innerText = namePokemon;
-
-    const idPokemon = objPokemon.id;
-    let paragId = document.createElement("p");
-    paragId.innerText = idPokemon;
-
-    card.appendChild(imgPokemon);
-    card.appendChild(paragId);
-    card.appendChild(paragName);
-    main.appendChild(card);
-    body.appendChild(main);
-  }
+async function createCardPokemon(poke) {
+  let main = `<main>
+        <span>
+          <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
+          <p>${poke.name}<p/>
+          <p>${poke.id}<p/>
+          </span>
+          </main>
+      `;
+  document.querySelector("main").innerHTML += main;
 }
 
-function arrayIdPokemons(objPokemon) {
-  let pokemonsId = [];
-
-  for (let i = 0; i < 50; i++) {
-    let pokemonFind = objPokemon[i].url ?? objPokemon[i].pokemon.url;
-    pokemonsId.push(getIdPokemon(pokemonFind));
+async function fetchInApi(valueArray) {
+  try {
+    for (let pokemonId of valueArray) {
+      const worker = new Worker("./workerFetch.js");
+      worker.postMessage(pokemonId);
+      worker.addEventListener("message", (msn) => {
+        const pokemonObj = new Pokemon(msn.data);
+        createCardPokemon(pokemonObj);
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
-
-  return pokemonsId;
-}
-
-function getIdPokemon(urlPokemon) {
-  let pokemonId = urlPokemon.split("/");
-  return pokemonId[pokemonId.length - 2];
-}
-
-function createNextNumPag(sizeResults) {
-  let lengthPags = Math.ceil(sizeResults / 50);
-
-  let div = document.createElement("div");
-  div.classList = "next_button";
-
-  for (let i = 0; i <= lengthPags; i++) {
-    let button = document.createElement("button");
-    button.innerText = i;
-    div.appendChild(button);
-  }
-  document.querySelector("main").appendChild(div);
 }
