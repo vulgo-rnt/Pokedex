@@ -1,28 +1,32 @@
 export class Pokemon {
   constructor(objOrdPokemon) {
-    //this.locationEncounter = this.getInApi(
-    //  objOrdPokemon["location_area_encounters"]
-    //).then((res) => this.reduceResponse(res, "location_area"));
-
-    //this.objPokeSpecies = this.getInApi(objOrdPokemon.species.url);
-
     this.imgOgPokemon =
       objOrdPokemon.sprites.other["official-artwork"].front_default;
 
     this.name = objOrdPokemon.name;
 
     this.id = objOrdPokemon.id;
-  }
-  async getInApi(url) {
-    let res = await fetch(url);
-    return await res.json();
-  }
-  reduceResponse(obj, endPoint) {
-    let response = [];
 
-    for (let element of obj) {
-      response.push(element[endPoint].name);
+    this.weigth = objOrdPokemon.weight;
+
+    this.height = objOrdPokemon.height;
+
+    this.stats = this.getStats(objOrdPokemon);
+
+    this.types = objOrdPokemon.types.map((element) => element.type.name);
+  }
+  async loadPokeSpecies() {
+    let res = await fetch(
+      `https://pokeapi.co/api/v2/pokemon_species/${this.id}`
+    );
+    res.json();
+    //this.
+  }
+  getStats(obj) {
+    let results = {};
+    for (let stats of obj.stats) {
+      results[stats.stat.name] = stats.base_stat;
     }
-    return response;
+    return results;
   }
 }

@@ -11,6 +11,8 @@ document.querySelector("[data-buttons]").addEventListener("click", (event) => {
   createOrd(event.target);
 });
 
+let pokemons = {};
+
 async function createOrd(target) {
   document.querySelector("main").innerHTML = "";
 
@@ -24,29 +26,45 @@ async function createOrd(target) {
   await fetchWithWorker(array);
 }
 
-async function createCardPokemon(poke) {
-  let main = `<main>
-        <span>
-          <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
-          <p>${poke.name}<p/>
-          <p>${poke.id}<p/>
-          </span>
-          </main>
-      `;
+function createListPokemon(poke) {
+  let main = `
+  <span id="${poke.name}">
+  <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
+  <p>${poke.name}<p/>
+  <p>${poke.id}<p/>
+  </span>
+  `;
   document.querySelector("main").innerHTML += main;
 }
 
 async function fetchWithWorker(valueArray) {
-  try {
-    for (let pokemonId of valueArray) {
-      const worker = new Worker("./workerFetch.js");
-      worker.postMessage(pokemonId);
-      worker.addEventListener("message", (msn) => {
-        const pokemonObj = new Pokemon(msn.data);
-        createCardPokemon(pokemonObj);
-      });
-    }
-  } catch (error) {
-    console.log(error);
+  for (let pokemonId of valueArray) {
+    const requestApi = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
+    );
+    const request = await requestApi.json();
+    const pokemonObj = new Pokemon(request);
+    pokemons[pokemonObj.name] = pokemonObj;
+    createListPokemon(pokemonObj);
   }
+  createInteration();
+}
+
+function createInteration() {
+  document.querySelectorAll("span").forEach((element) => {
+    element.addEventListener("click", (target) => {
+      let poke = pokemons[target.target.id];
+      console.log(target.target.id);
+      let main = `
+    <main>
+      <span>
+      <p>${poke.name}</p>
+      <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
+      <p>${poke.types.join()}</p>
+      </span>
+    </main>
+    `;
+      document.querySelector("main").innerHTML = main;
+    });
+  });
 }
