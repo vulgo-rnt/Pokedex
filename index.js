@@ -11,37 +11,17 @@ document.querySelector("[data-buttons]").addEventListener("click", (event) => {
   createOrd(event.target);
 });
 
-async function createOrd(ord) {
+async function createOrd(target) {
   document.querySelector("main").innerHTML = "";
 
-  if (ord.parentNode.id === "all") {
-    const objApi = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1281`
-    );
-    const obj = await objApi.json();
+  const objApi = await fetch(
+    `https://pokeapi.co/api/v2/${target.parentNode.id}/${target.id}`
+  );
+  const obj = await objApi.json();
 
-    const array = arrayIdPokemon(obj.results);
+  const array = arrayIdPokemon(obj, 0);
 
-    fetchInApi(array);
-  } else if (Number(ord.id)) {
-    const objApi = await fetch(
-      `https://pokeapi.co/api/v2/generation/${ord.id}`
-    );
-    const obj = await objApi.json();
-
-    const array = arrayIdPokemon(obj.pokemon_species);
-
-    fetchInApi(array);
-  } else {
-    const objApi = await fetch(
-      `https://pokeapi.co/api/v2/type/${ord.innerText.toLowerCase()}`
-    );
-    const obj = await objApi.json();
-
-    const array = arrayIdPokemon(obj.pokemon);
-
-    await fetchInApi(array);
-  }
+  await fetchWithWorker(array);
 }
 
 async function createCardPokemon(poke) {
@@ -56,7 +36,7 @@ async function createCardPokemon(poke) {
   document.querySelector("main").innerHTML += main;
 }
 
-async function fetchInApi(valueArray) {
+async function fetchWithWorker(valueArray) {
   try {
     for (let pokemonId of valueArray) {
       const worker = new Worker("./workerFetch.js");
