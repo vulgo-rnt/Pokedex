@@ -1,5 +1,5 @@
 import { Pokemon } from "./ClassPokemon.js";
-import arrayIdPokemon from "./utils/arrayIdPokemon.js";
+import { arrayIdPokemon, toCheckIdPokemons } from "./utils/arrayIdPokemon.js";
 
 const returnButton = document.getElementById("return");
 
@@ -21,9 +21,7 @@ async function createOrd(target) {
   );
   const obj = await objApi.json();
 
-  const array = arrayIdPokemon(obj, 0);
-
-  await fetchWithWorker(array);
+  await fetchWithWorker(obj, 10);
 }
 
 function createListPokemon(poke) {
@@ -37,34 +35,57 @@ function createListPokemon(poke) {
   document.querySelector("main").innerHTML += main;
 }
 
-async function fetchWithWorker(valueArray) {
-  for (let pokemonId of valueArray) {
+async function fetchWithWorker(obj, offset) {
+  document.querySelector("main").innerHTML = "";
+  const arrayId = arrayIdPokemon(obj, offset);
+
+  for (let pokemonId of arrayId) {
     const requestApi = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
     );
     const request = await requestApi.json();
+
     const pokemonObj = new Pokemon(request);
-    pokemons[pokemonObj.name] = pokemonObj;
     createListPokemon(pokemonObj);
+
+    pokemons[pokemonObj.name] = pokemonObj;
   }
   createInteration();
+  createPagNext(obj);
 }
 
 function createInteration() {
-  document.querySelectorAll("span").forEach((element) => {
-    element.addEventListener("click", (target) => {
-      let poke = pokemons[target.target.id];
-      console.log(target.target.id);
-      let main = `
-    <main>
-      <span>
-      <p>${poke.name}</p>
-      <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
-      <p>${poke.types.join()}</p>
-      </span>
-    </main>
-    `;
-      document.querySelector("main").innerHTML = main;
+  let cardPokemonsNodes = document.querySelectorAll("span");
+
+  cardPokemonsNodes.forEach((element) => {
+    element.childNodes.forEach((childsElements) => {
+      childsElements.addEventListener("click", (node) => {
+        let poke = pokemons[node.target.parentNode.id];
+        let htmlCardPokemon = `
+<main>
+  <span>
+    <p>${poke.name}</p>
+    <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
+    <p>${poke.types.join()}</p>
+  </span>
+</main>
+              `;
+        document.querySelector("main").innerHTML = htmlCardPokemon;
+      });
     });
   });
+}
+
+function createPagNext(obj) {
+  let idPokemons = toCheckIdPokemons(obj);
+  let div = document.createElement("div");
+  for (let i = 1; i <= Math.ceil(idPokemons.length / 10); i++) {
+    let button = document.createElement("button");
+    button.innerText = i;
+    button.addEventListener("click", (element) => {
+      fetchWithWorker(obj, element.target.innerText * 10);
+    });
+    div.appendChild(button);
+  }
+  document.querySelector("main").appendChild(div);
 }

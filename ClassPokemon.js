@@ -15,13 +15,13 @@ export class Pokemon {
 
     this.types = objOrdPokemon.types.map((element) => element.type.name);
   }
-  async loadPokeSpecies() {
-    let res = await fetch(
-      `https://pokeapi.co/api/v2/pokemon_species/${this.id}`
-    );
-    res.json();
-    //this.
-  }
+  // async loadPokeSpecies() {
+  //   let res = await fetch(
+  //     `https://pokeapi.co/api/v2/pokemon_species/${this.id}`
+  //   );
+  //   res.json();
+  //   this.
+  // }
   getStats(obj) {
     let results = {};
     for (let stats of obj.stats) {
