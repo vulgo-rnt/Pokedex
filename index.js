@@ -27,11 +27,24 @@ async function createOrd(target) {
 function createListPokemon(poke) {
   let main = `
   <span id="${poke.name}">
-  <img src = ${poke.imgOgPokemon} class= "imgPokemon"/>
-  <p>${poke.name}<p/>
-  <p>${poke.id}<p/>
-  </span>
+    <p class="id">#${poke.id}</p>
+    <img src = ${poke.imgGif ?? poke.imgOgPokemon} class= "imgPokemon"/>
+    <p class="name">${poke.name}</p>
   `;
+
+  let div = '<div class = "types">';
+
+  for (let type of poke.types) {
+    let typeElement = `
+  <div class= "type ${type}">${type}</div>
+  `;
+    div += typeElement;
+  }
+
+  div += "</div>";
+  main += div;
+  main += "</span>";
+
   document.querySelector("main").innerHTML += main;
 }
 

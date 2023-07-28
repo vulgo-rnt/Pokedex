@@ -3,6 +3,11 @@ export class Pokemon {
     this.imgOgPokemon =
       objOrdPokemon.sprites.other["official-artwork"].front_default;
 
+    this.imgGif =
+      objOrdPokemon.sprites.versions["generation-v"][
+        "black-white"
+      ].animated?.front_default;
+
     this.name = objOrdPokemon.name;
 
     this.id = objOrdPokemon.id;
