@@ -25,11 +25,12 @@ async function createOrd(target) {
 }
 
 function createListPokemon(poke) {
+  let pokeName = poke.name[0].toUpperCase() + poke.name.substr(1);
   let main = `
   <span id="${poke.name}">
     <p class="id">#${poke.id}</p>
     <img src = ${poke.imgGif ?? poke.imgOgPokemon} class= "imgPokemon"/>
-    <p class="name">${poke.name}</p>
+    <p class="name">${pokeName.replace("-", " ")}</p>
   `;
 
   let div = '<div class = "types">';
