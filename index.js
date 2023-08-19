@@ -1,5 +1,54 @@
-import { Pokemon } from "./ClassPokemon.js";
-import { arrayIdPokemon, toCheckIdPokemons } from "./utils/arrayIdPokemon.js";
+function arrayIdPokemon(obj, offset) {
+  const objPokemon = toCheckIdPokemons(obj);
+  let pokemonsId = [];
+  try {
+    for (let i = offset - 10; i <= offset; i++) {
+      const pokemonFind = objPokemon[i].url ?? objPokemon[i].pokemon.url;
+      pokemonsId.push(getIdPokemon(pokemonFind));
+    }
+    return pokemonsId;
+  } catch {
+    return pokemonsId;
+  }
+}
+function getIdPokemon(urlPokemon) {
+  let pokemonId = urlPokemon.split("/");
+  return pokemonId[pokemonId.length - 2];
+}
+function toCheckIdPokemons(obj) {
+  return obj.pokemon ?? obj.pokemon_species ?? obj.results;
+}
+
+class Pokemon {
+  constructor(objOrdPokemon) {
+    this.imgOgPokemon =
+      objOrdPokemon.sprites.other["official-artwork"].front_default;
+
+    this.imgGif =
+      objOrdPokemon.sprites.versions["generation-v"][
+        "black-white"
+      ].animated?.front_default;
+
+    this.name = objOrdPokemon.name;
+
+    this.id = objOrdPokemon.id;
+
+    this.weigth = objOrdPokemon.weight;
+
+    this.height = objOrdPokemon.height;
+
+    this.stats = this.getStats(objOrdPokemon);
+
+    this.types = objOrdPokemon.types.map((element) => element.type.name);
+  }
+  getStats(obj) {
+    let results = {};
+    for (let stats of obj.stats) {
+      results[stats.stat.name] = stats.base_stat;
+    }
+    return results;
+  }
+}
 
 const returnButton = document.getElementById("return");
 
