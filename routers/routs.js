@@ -1,26 +1,27 @@
 import express from "express";
 import fs from "fs";
 
-const app = express();
-app.use(express.static("Pokedex"));
+const routers = express.Router();
 
-app.get("/", (req, res) => {
+routers.get("/", (req, res) => {
   res.set("Content-type", "text/html");
-  fs.readFile("./index.html", "utf-8", (err, data) => {
+  fs.readFile("./views/index.html", "utf-8", (err, data) => {
     res.send(data);
+    console.log(err);
   });
 });
-app.get("/index.js", (req, res) => {
+routers.get("/index.js", (req, res) => {
   res.set("Content-Type", "text/javascript");
   fs.readFile("./index.js", "utf-8", (err, data) => {
     res.send(data);
+    console.log(err);
   });
 });
-app.get("/style.css", (req, res) => {
+routers.get("/style.css", (req, res) => {
   res.set("Content-Type", "text/css");
   fs.readFile("./style.css", "utf-8", (err, data) => {
     res.send(data);
   });
 });
 
-app.listen(3000);
+export default routers;
