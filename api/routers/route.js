@@ -36,5 +36,13 @@ routers.get("/all", async (req, res) => {
   const templateList = await controller.listAll();
   res.send(templateList);
 });
+routers.get(/type-(.*)/, async (req, res) => {
+  res.set("Context-Type", "text/html");
+  const templateList = await controller.list(
+    "types",
+    req.originalUrl.substring(6)
+  );
+  res.send(templateList);
+});
 
 export default routers;
