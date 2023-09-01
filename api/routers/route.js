@@ -29,7 +29,15 @@ routers.get(/generation-(.*)/, async (req, res) => {
     "region",
     req.originalUrl.substring(1)
   );
-  console.log(templateList);
+  res.send(templateList);
+});
+routers.get(/generation-(.*)/, async (req, res) => {
+  res.set("Context-Type", "text/html");
+  const templateList = await controller.list(
+    "region",
+    req.originalUrl.substring(1)
+  );
+  res.send(templateList);
 });
 
 export default routers;
