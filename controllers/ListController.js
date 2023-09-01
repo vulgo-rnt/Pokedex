@@ -8,4 +8,9 @@ export class ListController {
     const list = await db.find({ [param1]: [param2] });
     return viewer.uptade(list);
   }
+  async listAll() {
+    const list = await db.find();
+    console.log(list);
+    return viewer.uptade(list);
+  }
 }
