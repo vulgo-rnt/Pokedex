@@ -1,5 +1,7 @@
 import express from "express";
 import fs from "fs";
+import { ListController } from "../../controllers/ListController.js";
+const controller = new ListController();
 
 const routers = express.Router();
 
@@ -7,19 +9,11 @@ routers.get("/", (req, res) => {
   res.set("Content-type", "text/html");
   fs.readFile("./index.html", "utf-8", (err, data) => {
     res.send(data);
-    console.log(err);
   });
 });
 routers.get("/main.js", (req, res) => {
   res.set("Content-Type", "text/javascript");
   fs.readFile("./main.js", "utf-8", (err, data) => {
-    res.send(data);
-    console.log(err);
-  });
-});
-routers.get("/controllers/ListController.js", (req, res) => {
-  res.set("Content-Type", "text/javascript");
-  fs.readFile("./controllers/ListController.js", "utf-8", (err, data) => {
     res.send(data);
   });
 });
@@ -29,16 +23,13 @@ routers.get("/style.css", (req, res) => {
     res.send(data);
   });
 });
-routers.get("/api/db/dbModel.js", (req, res) => {
-  res.set("Content-Type", "text/javascript");
-  fs.readFile("./api/db/dbModel.js", "utf-8", (err, data) => {
-    res.send(data);
-  });
+routers.get(/generation-(.*)/, async (req, res) => {
+  res.set("Context-Type", "text/html");
+  const templateList = await controller.list(
+    "region",
+    req.originalUrl.substring(1)
+  );
+  console.log(templateList);
 });
-routers.get("/views/ViewList.js", (req, res) => {
-  res.set("Content-Type", "text/javascript");
-  fs.readFile("./views/ViewList.js", "utf-8", (err, data) => {
-    res.send(data);
-  });
-});
+
 export default routers;

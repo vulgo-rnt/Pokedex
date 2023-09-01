@@ -1,19 +1,14 @@
 import { ViewList } from "../views/ViewList.js";
 import db from "../api/db/dbModel.js";
 
+const viewer = new ViewList();
+
 export class ListController {
-  classPokemon;
-  ord;
-  constructor(attributesPokemon) {
-    this.classPokemon = attributesPokemon.parentNode.id;
-    this.ord = classPokemon.id;
-  }
-  list() {
-    if (this.classPokemon === "pokemons") {
-    } else {
-      const list = db.find({ [this.classPokemon]: [this.ord] });
-      console.log(list);
-      ViewList.uptade(list);
-    }
+  async list(param1, param2) {
+    console.log(param1);
+    console.log(param2);
+    const list = await db.find({ [param1]: [param2] });
+    return list;
+    //return viewer.uptade(list);
   }
 }

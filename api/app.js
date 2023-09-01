@@ -13,3 +13,5 @@ app.use("/", routers);
 const PORT = process.env.PORT || 4111;
 
 app.listen(PORT, console.log("Servidor escutando na porta: " + PORT));
+
+export default app;
