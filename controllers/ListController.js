@@ -2,15 +2,13 @@ import { ViewList } from "../views/ViewList.js";
 import db from "../api/db/dbModel.js";
 import fs from "fs";
 
-const viewer = new ViewList();
-
 async function list(param1, param2) {
-  const list = await db.find({ [param1]: { $in: [param2] } });
-  return viewer.uptade(list);
+  const dbData = await db.find({ [param1]: { $in: [param2] } });
+  return ViewList.uptade(dbData);
 }
 async function listAll() {
-  const list = await db.find();
-  return viewer.uptade(list);
+  const dbData = await db.find();
+  return ViewList.uptade(dbData);
 }
 
 export class ListController {

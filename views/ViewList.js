@@ -1,5 +1,15 @@
+import dotenv from "dotenv";
+
 export class ViewList {
-  uptade(list) {
+  pokeData;
+  listSize;
+
+  static uptade(dbData) {
+    dotenv.config;
+
+    this.pokeData = dbData;
+    this.listSize = process.env.LIST_SIZE;
+
     return `
 <html lang="pt-br">
   <head>
@@ -15,17 +25,30 @@ export class ViewList {
   </head>
   <body>
     <main>
-      ${this.tagsPokemons(list)}
+      ${this.createTagsPokemons(dbData)}
     </main>
     <footer>
+    ${this.pagination()}
     </footer>
+    <script src="mainPag.js"></script>
   </body>
 </html>
     `;
   }
-  tagsPokemons(listOfPokemons) {
+  static pagination() {
+    let resolve = "";
+    const mediaList = Math.ceil(this.pokeData.length / this.listSize);
+    for (let i = 1; i <= mediaList; i++) {
+      resolve += `
+      <button>${i}</button>
+      `;
+    }
+    return resolve;
+  }
+
+  static createTagsPokemons(listOfPokemons) {
     let response = "";
-    for (let i = 0; i <= 20; i++) {
+    for (let i = 0; i <= this.listSize; i++) {
       response += `
       <div>
         <span id="${listOfPokemons[i].name}">
@@ -38,8 +61,8 @@ export class ViewList {
     response += "";
     return response;
   }
-  nextPags() {}
-  tagsTypes(listOfTypesPokemons) {
+
+  static tagsTypes(listOfTypesPokemons) {
     let response = "<div class=types>";
     for (const type of listOfTypesPokemons) {
       response += `
