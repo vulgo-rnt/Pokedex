@@ -4,11 +4,7 @@ const controller = new ListController();
 
 const routers = express.Router();
 
-routers.get("/", controller.pag);
-routers.get("/main.js", controller.arqJs);
-routers.get("/style.css", controller.arqCss);
-routers.get(/generation-(.*)/, controller.generationPag);
-routers.get("/all", controller.allPag);
-routers.get(/type-(.*)/, controller.typesPag);
+routers.get("/", (req, res) => res.redirect("/index.html"));
+routers.get("/*.*", controller.send);
 
 export default routers;
