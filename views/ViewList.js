@@ -4,10 +4,10 @@ export class ViewList {
   pokeData;
   listSize;
 
-  static uptade(dbData) {
+  static uptade(dbData, pagSkip = 1) {
     dotenv.config;
 
-    this.pokeData = dbData;
+    if (dbData) this.pokeData = dbData;
     this.listSize = process.env.LIST_SIZE;
 
     return `
@@ -25,7 +25,7 @@ export class ViewList {
   </head>
   <body>
     <main>
-      ${this.createTagsPokemons(dbData)}
+      ${this.createTagsPokemons(this.pokeData, pagSkip)}
     </main>
     <footer>
     ${this.pagination()}
@@ -40,25 +40,32 @@ export class ViewList {
     const mediaList = Math.ceil(this.pokeData.length / this.listSize);
     for (let i = 1; i <= mediaList; i++) {
       resolve += `
-      <button>${i}</button>
+      <button id = ${i}>${i}</button>
       `;
     }
     return resolve;
   }
 
-  static createTagsPokemons(listOfPokemons) {
+  static createTagsPokemons(listOfPokemons, pagSkip) {
     let response = "";
-    for (let i = 0; i <= this.listSize; i++) {
-      response += `
+    try {
+      for (
+        let i = this.listSize * pagSkip - this.listSize;
+        i <= this.listSize * pagSkip;
+        i++
+      ) {
+        response += `
       <div>
         <span id="${listOfPokemons[i].name}">
-        <p class="id">#${listOfPokemons[i].id}</p>
+        <p class="id">#${listOfPokemons[i].id}</p>s
         <img src = ${listOfPokemons[i].img[0]} class= "imgPokemon"/>
         <p class="name">${listOfPokemons[i].name}</p>
         ${this.tagsTypes(listOfPokemons[i].types)}
       </div>`;
+      }
+    } catch (err) {
+      return response;
     }
-    response += "";
     return response;
   }
 
