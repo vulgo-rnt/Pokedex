@@ -1,15 +1,10 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 
-dotenv.config();
+mongoose.connect(process.env.DATABASE);
 
-export default () => {
-  mongoose.connect(process.env.DATABASE);
+let db = mongoose.connection;
 
-  let db = mongoose.connection;
-
-  db.on("error", console.log.bind(console, "Erro de conexão"));
-  db.once("open", () => {
-    console.log("Conexão com o banco: true");
-  });
-};
+db.on("error", console.log.bind(console, "Erro de conexão"));
+db.once("open", () => {
+  console.log("Conexão com o banco: sucessfully");
+});
