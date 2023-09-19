@@ -4,14 +4,14 @@ const CardContanier = styled.span`
   width: 100px;
 `;
 
-const idPokemonContanier = styled.p``;
+const IdPokemonContanier = styled.p``;
 
 function Card({ id, name, types, img }) {
   return (
     <CardContanier>
       <img src={img} />
       <p>{name}</p>
-      <idPokemonContanier>{id}</idPokemonContanier>
+      <IdPokemonContanier>{id}</IdPokemonContanier>
       {types.map((type) => {
         <span>{type}</span>;
       })}

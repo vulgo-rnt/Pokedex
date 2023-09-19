@@ -6,8 +6,19 @@ const Input = styled.input`
   border-radius: 20px;
   padding: 8px;
 `;
-function FindInput() {
-  return <Input placeholder="Digite o nome do pokemon." />;
+
+function FindInput({ set }) {
+  const submit = (event) => {
+    event.preventDefault();
+    set(event.target[0].value);
+    event.target[0].value = "";
+  };
+
+  return (
+    <form onSubmit={submit}>
+      <Input placeholder="Digite o nome do pokemon." />
+    </form>
+  );
 }
 
 export default FindInput;

@@ -1,12 +1,6 @@
 import styled from "styled-components";
-import FindInput from "./components/FindInput";
-import Logo from "./components/Logo";
+import Header from "./components/Header";
 
-const Header = styled.header`
-  display: flex;
-  gap: 30px;
-  padding: 18px;
-`;
 const Global = styled.div`
   width: 100vw;
   height: 100vh;
@@ -16,10 +10,7 @@ const Global = styled.div`
 function App() {
   return (
     <Global>
-      <Header>
-        <Logo />
-        <FindInput />
-      </Header>
+      <Header />
     </Global>
   );
 }
