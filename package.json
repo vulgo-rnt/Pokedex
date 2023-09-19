@@ -1,6 +1,5 @@
 {
   "name": "pokedex",
-  "type": "module",
   "version": "1.0.0",
   "description": "Melhorando abilidades de codigos async.",
   "main": "app",
