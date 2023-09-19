@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import Logo from "../Logo";
 import FindInput from "../FindInput";
+import Card from "../Card";
 
 const HeaderContanier = styled.header`
   display: flex;
@@ -9,14 +10,13 @@ const HeaderContanier = styled.header`
   padding: 18px;
 `;
 
-const [findValue, setFindValue] = useState("");
-
 function Header() {
+  const [findValue, setFindValue] = useState(null);
   return (
     <HeaderContanier>
       <Logo />
       <FindInput set={(value) => setFindValue(value)} />
-      <p>{findValue}</p>
+      {findValue ? <Card input={findValue} /> : ""}
     </HeaderContanier>
   );
 }
