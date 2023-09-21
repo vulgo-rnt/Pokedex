@@ -1,11 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.js";
 import "./reset.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import FirstPag from "./components/FirstPag";
+import ListOrdPoke from "./components/ListOrdPoke";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <FirstPag />,
+  },
+  {
+    path: "/*",
+    element: <ListOrdPoke />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
