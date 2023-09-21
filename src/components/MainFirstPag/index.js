@@ -56,21 +56,21 @@ function MainFisrtPag() {
     <MainContanier>
       <DivContanier>
         {allAndFavorite.map((value, index) => (
-          <Link to={`/${value}`} key={index}>
+          <Link to={`/${value.toLowerCase()}`} key={index}>
             <ButtonContanier>{value}</ButtonContanier>
           </Link>
         ))}
       </DivContanier>
       <DivContanier>
         {regions.map((value, index) => (
-          <Link to={`/${value}`} key={index}>
+          <Link to={`/region/${value.toLowerCase()}`} key={index}>
             <ButtonContanier>{value}</ButtonContanier>
           </Link>
         ))}
       </DivContanier>
       <DivContanier>
         {types.map((value, index) => (
-          <Link to={`/${value}`} key={index}>
+          <Link to={`/type/${value.toLowerCase()}`} key={index}>
             <ButtonContanier>{value}</ButtonContanier>
           </Link>
         ))}

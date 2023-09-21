@@ -1,7 +1,7 @@
 import db from "../db/dbModel.js";
 
-async function findDB(key, value) {
-  const paramsFindDb = { [key]: { $in: [value] } } || null;
+async function findDB([key, value]) {
+  const paramsFindDb = { [key]: { $in: [value] } };
   const dbData = await db.find(paramsFindDb);
   return dbData;
 }
@@ -12,15 +12,14 @@ export class Controller {
     res.send(response);
   }
   static async sendAll(req, res) {
-    const response = await findDB();
+    const response = await db.find();
     res.send(response);
   }
-  static async sendGeneration(req, res) {
-    const response = await findDB(["region", req.url.substring(1)]);
+  static async sendRegion(req, res) {
+    const response = await findDB(["region", req.url.substring(8)]);
     res.send(response);
   }
   static async sendType(req, res) {
-    console.log(req.url.substring(5));
     const response = await findDB(["types", req.url.substring(6)]);
     res.send(response);
   }

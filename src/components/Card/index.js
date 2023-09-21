@@ -1,13 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const CardContanier = styled.span`
-  width: 100px;
-`;
+const CardContanier = styled.span``;
 
 const IdPokemonContanier = styled.p``;
 
-function Card({ input, inputFind }) {
+function Card({ input, inputFind = false }) {
   const [poke, setPoke] = useState(input);
 
   if (inputFind) {
@@ -17,9 +15,11 @@ function Card({ input, inputFind }) {
   }
   return (
     <CardContanier>
-      <img src={poke.img?.[0]} />
-      <p>{poke.name}</p>
-      <IdPokemonContanier>{poke.id}</IdPokemonContanier>
+      <img src={poke.img?.[1] || poke.img?.[0]} />
+      <div>
+        <p>{poke.name}</p>
+        <IdPokemonContanier>{poke.id}</IdPokemonContanier>
+      </div>
     </CardContanier>
   );
 }

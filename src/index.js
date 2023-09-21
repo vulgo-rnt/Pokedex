@@ -11,8 +11,20 @@ const router = createBrowserRouter([
     element: <FirstPag />,
   },
   {
-    path: "/*",
+    path: "region/*",
     element: <ListOrdPoke />,
+  },
+  {
+    path: "type/*",
+    element: <ListOrdPoke />,
+  },
+  {
+    path: "all",
+    element: <ListOrdPoke />,
+  },
+  {
+    path: "favorite",
+    element: <p>em construção</p>,
   },
 ]);
 
