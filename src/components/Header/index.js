@@ -11,12 +11,12 @@ const HeaderContanier = styled.header`
 `;
 
 function Header() {
-  const [findValue, setFindValue] = useState(null);
+  const [inputValue, setInputValue] = useState(null);
   return (
     <HeaderContanier>
       <Logo />
-      <FindInput set={(value) => setFindValue(value)} />
-      {findValue ? <Card input={findValue} /> : ""}
+      <FindInput set={(value) => setInputValue(value)} />
+      {inputValue ? <Card input={inputValue} /> : ""}
     </HeaderContanier>
   );
 }

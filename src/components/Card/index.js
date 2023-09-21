@@ -9,14 +9,10 @@ const IdPokemonContanier = styled.p``;
 
 function Card({ input }) {
   const [poke, setPoke] = useState({});
-  const fet = async () => {
-    const pokemonInfos = await fetch(
-      ` http://192.168.0.95:4111/pokemon/${input}`
-    );
-    const pokemon = await pokemonInfos.json();
-    setPoke(pokemon);
-  };
-  fet();
+
+  fetch(` http://192.168.0.95:4111/pokemon/${input}`)
+    .then((resp) => resp.json())
+    .then((resp) => setPoke(resp));
 
   return (
     <CardContanier>
