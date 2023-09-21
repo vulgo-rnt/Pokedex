@@ -4,7 +4,7 @@ const SectionContanier = styled`
     display: flex;
 `;
 function ListOrdPoke({ ord }) {
-  return <>{ord.map((pokemon) => {})}</>;
+  return <SectionContanier>{ord.map((pokemon) => {})}</SectionContanier>;
 }
 
 export default ListOrdPoke;

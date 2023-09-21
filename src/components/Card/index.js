@@ -7,13 +7,14 @@ const CardContanier = styled.span`
 
 const IdPokemonContanier = styled.p``;
 
-function Card({ input }) {
-  const [poke, setPoke] = useState({});
+function Card({ input, inputFind }) {
+  const [poke, setPoke] = useState(input);
 
-  fetch(` http://192.168.0.95:4111/pokemon/${input}`)
-    .then((resp) => resp.json())
-    .then((resp) => setPoke(resp));
-
+  if (inputFind) {
+    fetch(` http://192.168.0.95:4111/pokemon/${input}`)
+      .then((resp) => resp.json())
+      .then((resp) => setPoke(resp));
+  }
   return (
     <CardContanier>
       <img src={poke.img?.[0]} />

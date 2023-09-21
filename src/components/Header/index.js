@@ -16,7 +16,7 @@ function Header() {
     <HeaderContanier>
       <Logo />
       <FindInput set={(value) => setInputValue(value)} />
-      {inputValue ? <Card input={inputValue} /> : ""}
+      {inputValue ? <Card input={inputValue} inputFind={true} /> : ""}
     </HeaderContanier>
   );
 }
