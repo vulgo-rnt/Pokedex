@@ -1,9 +1,23 @@
 import { useState } from "react";
 import styled from "styled-components";
+import TypesPokemons from "../TypesPokemons";
 
-const CardContanier = styled.span``;
+const CardContanier = styled.span`
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  min-width: 367px;
+  height: 100px;
+  display: flex;
+`;
 
-const IdPokemonContanier = styled.p``;
+const IdPokemonContanier = styled.p`
+  color: #000000;
+  font: 400 8px "Pokemon Classic", sans-serif;
+  font-family: "Pokemon Classic Regular";
+`;
 
 function Card({ input, inputFind = false }) {
   const [poke, setPoke] = useState(input);
@@ -13,13 +27,20 @@ function Card({ input, inputFind = false }) {
       .then((resp) => resp.json())
       .then((resp) => setPoke(resp));
   }
+
+  let pokeId = 0;
+  if (poke.id < 10) pokeId = `00${poke.id}`;
+  else if (poke.id < 100) pokeId = `0${poke.id}`;
+  else pokeId = poke.id;
+
   return (
     <CardContanier>
       <img src={poke.img?.[1] || poke.img?.[0]} />
       <div>
         <p>{poke.name}</p>
-        <IdPokemonContanier>{poke.id}</IdPokemonContanier>
+        <IdPokemonContanier>#{pokeId}</IdPokemonContanier>
       </div>
+      {/* <TypesPokemons type={poke.types} /> */}
     </CardContanier>
   );
 }
