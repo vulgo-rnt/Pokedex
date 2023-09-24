@@ -5,8 +5,7 @@
   "description": "Melhorando abilidades de codigos async.",
   "main": "app",
   "scripts": {
-    "start": "concurrently \"node api/app.js\" \"react-scripts start\"",
-    "api": "node api/app.js",
+    "start": "concurrently \"nodemon api/app.js\" \"react-scripts start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
