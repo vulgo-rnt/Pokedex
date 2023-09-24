@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import Card from "../Card";
 import { useEffect, useState } from "react";
+import FindInput from "../FindInput";
 
 const SectionContanier = styled.section`
+  box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  margin: 6%;
 `;
 
 function ListOrdPoke() {
@@ -19,11 +25,13 @@ function ListOrdPoke() {
   }, []);
 
   return (
-    <SectionContanier>
-      {list.map((pokemon, index) => (
-        <Card key={index} input={pokemon} />
-      ))}
-    </SectionContanier>
+    <>
+      <SectionContanier>
+        {list.map((pokemon, index) => (
+          <Card key={index} input={pokemon} />
+        ))}
+      </SectionContanier>
+    </>
   );
 }
 

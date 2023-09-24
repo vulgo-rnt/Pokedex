@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
-const TypeContenier = styled.img``;
+const TypeContenier = styled.div`
+  img {
+    gap: 6px;
+  }
+`;
 
 function TypesPokemons({ types }) {
   return (
-    <div>
+    <TypeContenier>
       {types.map((type) => (
-        <TypeContenier src={urlType?.[type]} />
+        <img key={type} src={`/typesImg/${type}.png`} />
       ))}
-    </div>
+    </TypeContenier>
   );
 }
 

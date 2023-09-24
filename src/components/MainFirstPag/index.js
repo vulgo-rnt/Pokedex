@@ -29,7 +29,7 @@ const types = [
   "Bug",
   "Dark",
   "Dragon",
-  "Eletric",
+  "Electric",
   "Fairy",
   "Fighting",
   "Fire",
