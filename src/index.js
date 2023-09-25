@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./reset.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FirstPag from "./components/FirstPag";
 import ListOrdPoke from "./components/ListOrdPoke";
+import "./reset.css";
 
 const router = createBrowserRouter([
   {

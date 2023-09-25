@@ -12,6 +12,10 @@ const SectionContanier = styled.section`
   margin: 6%;
 `;
 
+const PagsLink = styled.div`
+  margin: 0 40% 10% 40%;
+`;
+
 function ListOrdPoke() {
   const location = new String(window.location.pathname);
   const locationTreat = location.substring(1);
@@ -38,9 +42,9 @@ function ListOrdPoke() {
           <Card key={pokemon.id} input={pokemon} />
         ))}
       </SectionContanier>
-      <div>
+      <PagsLink>
         <Pagnation value={lengthList} set={setPag} />
-      </div>
+      </PagsLink>
     </>
   );
 }
