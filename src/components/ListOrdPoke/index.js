@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Card from "../Card";
 import { useEffect, useState } from "react";
-import Pagnation from "../Pagnation";
+import { Pagination } from "@mui/material";
 
-const SectionContanier = styled.section`
+const SectionContanierListPokemons = styled.section`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -12,8 +12,8 @@ const SectionContanier = styled.section`
   margin: 6%;
 `;
 
-const PagsLink = styled.div`
-  margin: 0 40% 10% 40%;
+const BodyPag = styled.div`
+  align-items: center;
 `;
 
 function ListOrdPoke() {
@@ -36,16 +36,19 @@ function ListOrdPoke() {
   }, [pag]);
 
   return (
-    <>
-      <SectionContanier>
+    <BodyPag>
+      <SectionContanierListPokemons>
         {list.map((pokemon) => (
           <Card key={pokemon.id} input={pokemon} />
         ))}
-      </SectionContanier>
-      <PagsLink>
-        <Pagnation value={lengthList} set={setPag} />
-      </PagsLink>
-    </>
+      </SectionContanierListPokemons>
+      <Pagination
+        count={Math.ceil(lengthList / 25)}
+        onChange={(event, pag) => {
+          setPag(pag);
+        }}
+      />
+    </BodyPag>
   );
 }
 
