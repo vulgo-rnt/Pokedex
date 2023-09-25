@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FirstPag from "./components/FirstPag";
-import ListOrdPoke from "./components/ListOrdPoke";
 import "./reset.css";
+import PagOrdPoke from "./components/PagOrdPoke";
 
 const router = createBrowserRouter([
   {
@@ -12,15 +12,15 @@ const router = createBrowserRouter([
   },
   {
     path: "region/*",
-    element: <ListOrdPoke />,
+    element: <PagOrdPoke />,
   },
   {
     path: "type/*",
-    element: <ListOrdPoke />,
+    element: <PagOrdPoke />,
   },
   {
     path: "all",
-    element: <ListOrdPoke />,
+    element: <PagOrdPoke />,
   },
   {
     path: "favorite",

@@ -8,8 +8,8 @@ export class Controller {
   static async sendAll(req, res) {
     const response = await db
       .find()
-      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 25)
-      .limit(25);
+      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
+      .limit(27);
 
     const lengthList = await db.countDocuments();
 
@@ -22,8 +22,8 @@ export class Controller {
 
     const response = await db
       .find(query)
-      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 25)
-      .limit(25);
+      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
+      .limit(27);
 
     const lengthList = await db.countDocuments(query);
 
@@ -36,8 +36,8 @@ export class Controller {
 
     const response = await db
       .find(query)
-      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 25)
-      .limit(25);
+      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
+      .limit(27);
 
     const lengthList = await db.countDocuments(query);
 

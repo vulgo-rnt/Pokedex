@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import TypesPokemons from "../TypesPokemons";
 
@@ -25,14 +24,8 @@ const CardContanier = styled.span`
   }
 `;
 
-function Card({ input, inputFind = false }) {
-  const [poke, setPoke] = useState(input);
-
-  if (inputFind) {
-    fetch(` http://192.168.0.95:4111/pokemon/${input}`)
-      .then((resp) => resp.json())
-      .then((resp) => setPoke(resp));
-  }
+function Card({ input }) {
+  const poke = input;
 
   let pokeId = 0;
   if (poke.id < 10) pokeId = `00${poke.id}`;

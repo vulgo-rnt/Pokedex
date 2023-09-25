@@ -13,10 +13,12 @@ const SectionContanierListPokemons = styled.section`
 `;
 
 const BodyPag = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
 `;
 
-function ListOrdPoke() {
+function PagOrdPoke() {
   const location = new String(window.location.pathname);
   const locationTreat = location.substring(1);
 
@@ -43,7 +45,7 @@ function ListOrdPoke() {
         ))}
       </SectionContanierListPokemons>
       <Pagination
-        count={Math.ceil(lengthList / 25)}
+        count={Math.ceil(lengthList / 27)}
         onChange={(event, pag) => {
           setPag(pag);
         }}
@@ -52,4 +54,4 @@ function ListOrdPoke() {
   );
 }
 
-export default ListOrdPoke;
+export default PagOrdPoke;

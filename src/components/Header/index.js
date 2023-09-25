@@ -2,20 +2,19 @@ import styled from "styled-components";
 import { useState } from "react";
 import Logo from "../Logo";
 import FindInput from "../FindInput";
-import Card from "../Card";
 
 const HeaderContanier = styled.header`
   display: flex;
-  gap: 30px;
-  padding: 18px;
+  justify-content: space-between;
+  padding: 18px 32px;
+  align-items: center;
 `;
 
-function Header() {
-  const [inputValue, setInputValue] = useState(null);
+function Header({ set }) {
   return (
     <HeaderContanier>
       <Logo />
-      <FindInput set={(value) => setInputValue(value)} />
+      <FindInput set={(value) => set(value)} />
     </HeaderContanier>
   );
 }
