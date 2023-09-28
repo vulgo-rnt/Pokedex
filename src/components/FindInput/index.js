@@ -1,25 +1,30 @@
+import { Autocomplete, TextField } from "@mui/material";
 import styled from "styled-components";
 
-const divContanier = styled.div``;
-
-const Input = styled.input`
+const DivContanier = styled.div`
   width: 250px;
-  border: none;
-  border-radius: 20px;
-  padding: 1em;
 `;
 
-function FindInput({ set }) {
-  const submit = (event) => {
-    event.preventDefault();
-    set(event.target[0].value);
-    event.target[0].value = "";
-  };
+const options = ["pikachu", "bulbasaur"];
 
+function FindInput({ set }) {
   return (
-    <form onSubmit={submit}>
-      <Input placeholder="Find Pokemon :" />
-    </form>
+    <DivContanier>
+      <Autocomplete
+        options={options}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label={"Find Pokemon"}
+            onKeyUp={(event) => {
+              if (event.key === "Enter") {
+                set(event.target.value);
+              }
+            }}
+          />
+        )}
+      />
+    </DivContanier>
   );
 }
 

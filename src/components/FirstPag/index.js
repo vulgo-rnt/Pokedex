@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Header from "../Header";
 import MainFisrtPag from "../MainFirstPag";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import InfoPoke from "../InfoPoke";
 
 const Global = styled.div`
   min-height: 100vh;
@@ -11,10 +12,26 @@ const Global = styled.div`
 
 function FirstPag() {
   const [inputValue, setInputValue] = useState(null);
+
+  const [pokemon, setPokemon] = useState(null);
+
+  useEffect(() => {
+    if (inputValue) {
+      fetch(`http://192.168.0.95:4111/pokemon/${inputValue}`)
+        .then((resp) => resp.json())
+        .then((resp) => {
+          setPokemon(resp);
+        });
+    }
+  }, [inputValue]);
+
   return (
     <Global>
       <Header set={(value) => setInputValue(value)} />
       <MainFisrtPag />
+      {pokemon && (
+        <InfoPoke poke={pokemon} set={(param) => setInputValue(param)} />
+      )}
     </Global>
   );
 }

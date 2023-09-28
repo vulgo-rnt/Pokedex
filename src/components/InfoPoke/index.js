@@ -16,9 +16,13 @@ function InfoPoke({ poke, set }) {
       >
         X
       </button>
-      <p>{poke.name}</p>
-      <p>{poke.id}</p>
-      <img src={poke.img[0]} />
+      {poke.name && (
+        <>
+          <p>{poke.name}</p>
+          <p>{poke.id}</p>
+          <img src={poke.img[0]} />
+        </>
+      )}
     </SectionContanier>
   );
 }
