@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+const divContanier = styled.div``;
+
 const Input = styled.input`
-  width: 150px;
+  width: 250px;
   border: none;
   border-radius: 20px;
-  padding: 8px;
+  padding: 1em;
 `;
 
 function FindInput({ set }) {
@@ -16,7 +18,7 @@ function FindInput({ set }) {
 
   return (
     <form onSubmit={submit}>
-      <Input placeholder="Digite o nome do pokemon." />
+      <Input placeholder="Find Pokemon :" />
     </form>
   );
 }

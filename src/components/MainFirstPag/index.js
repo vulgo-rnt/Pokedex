@@ -8,20 +8,17 @@ const MainContanier = styled.main`
     text-decoration: underline;
     font-family: "Pokemon Classic Regular";
   }
-`;
-
-const DivContanier = styled.div``;
-
-const ButtonContanier = styled.button`
-  height: auto;
-  margin: 10px;
-  font-family: "Pokemon Classic Regular";
-  font-size: 20px;
-  color: black;
-  border: outset 2px black;
-  padding: 10px 10px 15px 10px;
-  border-radius: 20px;
-  background-color: transparent;
+  button {
+    height: auto;
+    margin: 10px;
+    font-family: "Pokemon Classic Regular";
+    font-size: 20px;
+    color: black;
+    border: outset 2px black;
+    padding: 10px 10px 15px 10px;
+    border-radius: 20px;
+    background-color: transparent;
+  }
 `;
 
 const regions = [
@@ -60,29 +57,29 @@ const allAndFavorite = ["All", "Favorite"];
 function MainFisrtPag() {
   return (
     <MainContanier>
-      <DivContanier>
+      <div>
         {allAndFavorite.map((value, index) => (
           <Link to={`/${value.toLowerCase()}`} key={index}>
-            <ButtonContanier>{value}</ButtonContanier>
+            <button>{value}</button>
           </Link>
         ))}
-      </DivContanier>
-      <DivContanier>
+      </div>
+      <div>
         <h2>Regions</h2>
         {regions.map((value, index) => (
           <Link to={`/region/${value.toLowerCase()}`} key={index}>
-            <ButtonContanier>{value}</ButtonContanier>
+            <button>{value}</button>
           </Link>
         ))}
-      </DivContanier>
-      <DivContanier>
+      </div>
+      <div>
         <h2>Types</h2>
         {types.map((value, index) => (
           <Link to={`/type/${value.toLowerCase()}`} key={index}>
-            <ButtonContanier>{value}</ButtonContanier>
+            <button>{value}</button>
           </Link>
         ))}
-      </DivContanier>
+      </div>
     </MainContanier>
   );
 }

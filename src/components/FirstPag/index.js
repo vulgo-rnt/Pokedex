@@ -4,9 +4,9 @@ import MainFisrtPag from "../MainFirstPag";
 import { useState } from "react";
 
 const Global = styled.div`
+  min-height: 100vh;
   background-color: #dc0a2d;
-  box-sizing: border-box;
-  height: 100%;
+  padding: 0 3em;
 `;
 
 function FirstPag() {

@@ -24,7 +24,7 @@ const CardContanier = styled.span`
   }
 `;
 
-function Card({ input }) {
+function Card({ input, set }) {
   const poke = input;
 
   let pokeId = 0;
@@ -36,7 +36,11 @@ function Card({ input }) {
     poke.name[0].toUpperCase() + poke.name.substring(1).replace(/-/g, " ");
 
   return (
-    <CardContanier>
+    <CardContanier
+      onClick={(event) => {
+        set(input);
+      }}
+    >
       <img src={poke.img?.[1] || poke.img?.[0]} />
       <div>
         <p>{pokeName}</p>
