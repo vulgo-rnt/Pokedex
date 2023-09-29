@@ -1,12 +1,11 @@
 {
   "name": "pokedex",
   "type": "module",
-  "version": "1.0.0",
-  "description": "Melhorando abilidades de codigos async.",
+  "version": "2.0.0",
+  "description": "Uma pokedex simples",
   "main": "app",
   "scripts": {
-    "start": "concurrently \"nodemon api/app.js\" \"react-scripts start\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"nodemon api/app.js\" \"react-scripts start\""
   },
   "author": "",
   "license": "ISC",
