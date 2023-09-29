@@ -5,9 +5,14 @@ import { useState, useEffect } from "react";
 import InfoPoke from "../InfoPoke";
 
 const Global = styled.div`
+  box-sizing: border-box;
   min-height: 100vh;
   background-color: #dc0a2d;
   padding: 0 3em;
+  section {
+    top: 30px;
+    margin-left: 16%;
+  }
 `;
 
 function FirstPag() {
@@ -30,7 +35,13 @@ function FirstPag() {
       <Header set={(value) => setInputValue(value)} />
       <MainFisrtPag />
       {pokemon && (
-        <InfoPoke poke={pokemon} set={(param) => setInputValue(param)} />
+        <InfoPoke
+          poke={pokemon}
+          set={(param) => {
+            setInputValue(param);
+            setPokemon(param);
+          }}
+        />
       )}
     </Global>
   );

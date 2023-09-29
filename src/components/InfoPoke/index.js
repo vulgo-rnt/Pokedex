@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SectionContanier = styled.section`
   position: fixed;
   width: 60vw;
-  background-color: red;
+  background-color: white;
 `;
 
 function InfoPoke({ poke, set }) {
