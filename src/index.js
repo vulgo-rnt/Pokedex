@@ -26,6 +26,7 @@ const router = createBrowserRouter([
     path: "favorite",
     element: <p>em construção</p>,
   },
+  { path: "*", element: <p>Pagina não encontrada</p> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

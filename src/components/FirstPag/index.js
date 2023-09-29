@@ -9,7 +9,7 @@ const Global = styled.div`
   min-height: 100vh;
   background-color: #dc0a2d;
   padding: 0 3em;
-  section {
+  dialog {
     top: 30px;
     margin-left: 16%;
   }

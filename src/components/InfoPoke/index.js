@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
-const SectionContanier = styled.section`
+const Overlay = styled.div`
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+const DialogContanier = styled.dialog`
   position: fixed;
   width: 60vw;
   background-color: white;
@@ -8,22 +17,15 @@ const SectionContanier = styled.section`
 
 function InfoPoke({ poke, set }) {
   return (
-    <SectionContanier>
-      <button
-        onClick={() => {
-          set(null);
-        }}
-      >
-        X
-      </button>
-      {poke.name && (
-        <>
-          <p>{poke.name}</p>
-          <p>{poke.id}</p>
-          <img src={poke.img[0]} />
-        </>
-      )}
-    </SectionContanier>
+    <>
+      <Overlay />
+      <DialogContanier open={!!poke}>
+        <button onClick={() => set(null)}>X</button>
+        <p>{poke.name}</p>
+        <p>{poke.id}</p>
+        <img src={poke.img[0]} />
+      </DialogContanier>
+    </>
   );
 }
 export default InfoPoke;
