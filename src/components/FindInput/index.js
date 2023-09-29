@@ -1,11 +1,10 @@
 import { Autocomplete, TextField } from "@mui/material";
 import styled from "styled-components";
+import options from "./pokeNames/options.json";
 
 const DivContanier = styled.div`
   width: 250px;
 `;
-
-const options = ["pikachu", "bulbasaur"];
 
 function FindInput({ set }) {
   return (
