@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Logo from "../Logo";
-import FindInput from "../FindInput";
+import Logo from "components/Logo";
+import FindInput from "components/FindInput";
 
 const HeaderContanier = styled.header`
   display: flex;

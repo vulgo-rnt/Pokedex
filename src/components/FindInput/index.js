@@ -2,7 +2,7 @@ import { Autocomplete, TextField } from "@mui/material";
 import styled from "styled-components";
 import options from "./pokeNames/options.json";
 import { useState, useEffect } from "react";
-import DialogCard from "../DialogCard";
+import DialogCard from "components/DialogCard";
 
 const DivContanier = styled.div`
   width: 250px;

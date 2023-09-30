@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Card from "../../Card";
-import InfoPoke from "../../DialogCard";
+import Card from "components/Card";
+import InfoPoke from "components/DialogCard";
 import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 
