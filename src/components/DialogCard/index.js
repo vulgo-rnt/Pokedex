@@ -15,7 +15,7 @@ const DialogContanier = styled.dialog`
   background-color: white;
 `;
 
-function InfoPoke({ poke, set }) {
+function DialogCard({ poke, set }) {
   return (
     <>
       <Overlay />
@@ -28,4 +28,4 @@ function InfoPoke({ poke, set }) {
     </>
   );
 }
-export default InfoPoke;
+export default DialogCard;

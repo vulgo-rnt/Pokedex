@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import Card from "../Card";
-import InfoPoke from "../InfoPoke";
+import Card from "../../Card";
+import InfoPoke from "../../DialogCard";
 import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 
-const SectionContanierListPokemons = styled.section`
+const MainContanierListPokemons = styled.main`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-around;
-  margin: 6%;
 `;
 
 const BodyPag = styled.div`
@@ -19,7 +18,7 @@ const BodyPag = styled.div`
   align-items: center;
 `;
 
-function PagOrdPoke() {
+function PagListOrd() {
   const location = new String(window.location.pathname);
   const locationTreat = location.substring(1);
 
@@ -41,27 +40,30 @@ function PagOrdPoke() {
   }, [pag]);
 
   return (
-    <BodyPag>
-      <SectionContanierListPokemons>
-        {list.map((pokemon) => (
-          <Card
+      <BodyPag>
+        <MainContanierListPokemons>
+          {list.map((pokemon) => (
+            <Card
+              set={(param) => setInfoPokeCard(param)}
+              key={pokemon.id}
+              input={pokemon}
+            />
+          ))}
+        </MainContanierListPokemons>
+        <Pagination
+          count={Math.ceil(lengthList / 27)}
+          onChange={(event, pag) => {
+            setPag(pag);
+          }}
+        />
+        {infoPokeCard && (
+          <InfoPoke
+            poke={infoPokeCard}
             set={(param) => setInfoPokeCard(param)}
-            key={pokemon.id}
-            input={pokemon}
           />
-        ))}
-      </SectionContanierListPokemons>
-      {infoPokeCard && (
-        <InfoPoke poke={infoPokeCard} set={(param) => setInfoPokeCard(param)} />
-      )}
-      <Pagination
-        count={Math.ceil(lengthList / 27)}
-        onChange={(event, pag) => {
-          setPag(pag);
-        }}
-      />
-    </BodyPag>
+        )}
+      </BodyPag>
   );
 }
 
-export default PagOrdPoke;
+export default PagListOrd;

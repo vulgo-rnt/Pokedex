@@ -9,11 +9,11 @@ const HeaderContanier = styled.header`
   align-items: center;
 `;
 
-function Header({ set }) {
+function Header() {
   return (
     <HeaderContanier>
       <Logo />
-      <FindInput set={(value) => set(value)} />
+      <FindInput />
     </HeaderContanier>
   );
 }

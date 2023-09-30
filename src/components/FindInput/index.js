@@ -1,29 +1,56 @@
 import { Autocomplete, TextField } from "@mui/material";
 import styled from "styled-components";
 import options from "./pokeNames/options.json";
+import { useState, useEffect } from "react";
+import DialogCard from "../DialogCard";
 
 const DivContanier = styled.div`
   width: 250px;
 `;
 
-function FindInput({ set }) {
+function FindInput() {
+  const [inputValue, setInputValue] = useState(null);
+
+  const [pokemon, setPokemon] = useState(null);
+
+  useEffect(() => {
+    if (inputValue) {
+      fetch(`http://192.168.0.95:4111/pokemon/${inputValue}`)
+        .then((resp) => resp.json())
+        .then((resp) => {
+          setPokemon(resp);
+        });
+    }
+  }, [inputValue]);
+
   return (
-    <DivContanier>
-      <Autocomplete
-        options={options}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label={"Find Pokemon"}
-            onKeyUp={(event) => {
-              if (event.key === "Enter") {
-                set(event.target.value);
-              }
-            }}
-          />
-        )}
-      />
-    </DivContanier>
+    <>
+      <DivContanier>
+        <Autocomplete
+          options={options}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={"Find Pokemon"}
+              onKeyUp={(event) => {
+                if (event.key === "Enter") {
+                  setInputValue(event.target.value);
+                }
+              }}
+            />
+          )}
+        />
+      </DivContanier>
+      {pokemon && (
+        <DialogCard
+          poke={pokemon}
+          set={(param) => {
+            setInputValue(param);
+            setPokemon(param);
+          }}
+        />
+      )}
+    </>
   );
 }
 

@@ -54,7 +54,7 @@ const types = [
 ];
 const allAndFavorite = ["All", "Favorite"];
 
-function MainFisrtPag() {
+function PagSortSelection() {
   return (
     <MainContanier>
       <div>
@@ -84,4 +84,4 @@ function MainFisrtPag() {
   );
 }
 
-export default MainFisrtPag;
+export default PagSortSelection;
