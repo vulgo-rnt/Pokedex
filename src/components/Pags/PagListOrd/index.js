@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import Card from "components/Card";
 import InfoPoke from "components/DialogCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Pagination } from "@mui/material";
+import { PagContext } from "context/FindValues";
+import { useLocation } from "react-router-dom";
 
 const MainContanierListPokemons = styled.main`
   margin: 2em;
@@ -20,24 +22,25 @@ const BodyPag = styled.div`
 `;
 
 function PagListOrd() {
-  const location = new String(window.location.pathname);
-  const locationTreat = location.substring(1);
-
-  const [list, setList] = useState([]);
-
-  const [lengthList, setLengthList] = useState(0);
-
-  const [pag, setPag] = useState(1);
-
-  const [infoPokeCard, setInfoPokeCard] = useState(null);
+  const {
+    list,
+    setList,
+    lengthList,
+    setLengthList,
+    pag,
+    setPag,
+    infoPokeCard,
+    setInfoPokeCard,
+  } = useContext(PagContext);
 
   useEffect(() => {
-    fetch(`http://192.168.0.95:4111/${locationTreat}/${pag}`)
+    fetch(`http://192.168.0.95:4111${useLocation()}/${pag}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setList(resp.response);
         setLengthList(resp.lengthList);
       });
+    console.log("useEffect");
   }, [pag]);
 
   return (
