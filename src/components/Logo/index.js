@@ -15,7 +15,7 @@ function Logo() {
   return (
     <LogoContainer>
       <img
-        src="pokedex-icon.png"
+        src="/pokedex-icon.png"
         alt="logo"
         style={{ width: "80px", margin: "auto" }}
       />

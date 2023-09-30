@@ -12,6 +12,7 @@ const Overlay = styled.div`
 const DialogContanier = styled.dialog`
   position: fixed;
   width: 60vw;
+  top: 5%;
   background-color: white;
 `;
 

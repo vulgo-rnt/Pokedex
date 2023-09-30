@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 
 const MainContanierListPokemons = styled.main`
+  margin: 2em;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -40,29 +41,26 @@ function PagListOrd() {
   }, [pag]);
 
   return (
-      <BodyPag>
-        <MainContanierListPokemons>
-          {list.map((pokemon) => (
-            <Card
-              set={(param) => setInfoPokeCard(param)}
-              key={pokemon.id}
-              input={pokemon}
-            />
-          ))}
-        </MainContanierListPokemons>
-        <Pagination
-          count={Math.ceil(lengthList / 27)}
-          onChange={(event, pag) => {
-            setPag(pag);
-          }}
-        />
-        {infoPokeCard && (
-          <InfoPoke
-            poke={infoPokeCard}
+    <BodyPag>
+      <MainContanierListPokemons>
+        {list.map((pokemon) => (
+          <Card
             set={(param) => setInfoPokeCard(param)}
+            key={pokemon.id}
+            input={pokemon}
           />
-        )}
-      </BodyPag>
+        ))}
+      </MainContanierListPokemons>
+      <Pagination
+        count={Math.ceil(lengthList / 27)}
+        onChange={(event, pag) => {
+          setPag(pag);
+        }}
+      />
+      {infoPokeCard && (
+        <InfoPoke poke={infoPokeCard} set={(param) => setInfoPokeCard(param)} />
+      )}
+    </BodyPag>
   );
 }
 
