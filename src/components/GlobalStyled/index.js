@@ -26,6 +26,9 @@ const ResetStyled = createGlobalStyle`
   html {
     height: 100%;
   }
+  a{
+    text-decoration: none;
+  }
 `;
 
 const GlobalStyled = styled.div`
