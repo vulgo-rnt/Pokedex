@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "components/Logo";
+import Logo from "components/Header/Logo";
 import FindInput from "components/FindInput";
 
 const HeaderContanier = styled.header`
