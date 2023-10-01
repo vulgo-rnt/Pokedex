@@ -4,6 +4,10 @@ import PagListOrd from "components/Pags/PagListOrd";
 import Header from "components/Header";
 import { GlobalStyled, ResetStyled } from "components/GlobalStyled";
 import { PagContextProvider } from "context/PagContext";
+import {
+  PagFavoriteContext,
+  PagFavoriteContextProvider,
+} from "context/PagFavoriteContext";
 
 const PagListOrdWithContext = () => (
   <PagContextProvider>
@@ -19,7 +23,14 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<PagSortSelection />} />
-          <Route path="favorite" element={<div>Em construção</div>} />
+          <Route
+            path="favorite"
+            element={
+              <PagFavoriteContextProvider>
+                <PagListOrd context={PagFavoriteContext} />
+              </PagFavoriteContextProvider>
+            }
+          />
           <Route path="type/*" element={<PagListOrdWithContext />} />
           <Route path="region/*" element={<PagListOrdWithContext />} />
           <Route path="all" element={<PagListOrdWithContext />} />

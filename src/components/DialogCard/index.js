@@ -16,12 +16,21 @@ const DialogContanier = styled.dialog`
   background-color: white;
 `;
 
+function setFavorite(poke) {
+  if (localStorage.getItem(poke.name)) {
+    localStorage.removeItem(poke.name);
+  } else {
+    localStorage.setItem(poke.name, JSON.stringify(poke));
+  }
+}
+
 function DialogCard({ poke, set }) {
   return (
     <>
       <Overlay />
       <DialogContanier open={!!poke}>
         <button onClick={() => set(null)}>X</button>
+        <button onClick={() => setFavorite(poke)}>FAVORITE</button>
         <p>{poke.name}</p>
         <p>{poke.id}</p>
         <img src={poke.img[0]} />

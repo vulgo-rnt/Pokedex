@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Card from "components/Card";
-import InfoPoke from "components/DialogCard";
+import Dialogcard from "components/DialogCard";
 import { Pagination } from "@mui/material";
-import { usePagContext } from "context/PagContext";
+import { PagContext } from "context/PagContext";
+import { useContext } from "react";
 
 const MainContanierListPokemons = styled.main`
   margin: 2em;
@@ -19,16 +20,16 @@ const BodyPag = styled.div`
   align-items: center;
 `;
 
-function PagListOrd() {
-  const { list, lengthList, setPag, infoPokeCard, setInfoPokeCard } =
-    usePagContext();
+function PagListOrd({ context = PagContext }) {
+  const { list, lengthList, setPag, dialogCard, setDialogCard } =
+    useContext(context);
 
   return (
     <BodyPag>
       <MainContanierListPokemons>
         {list.map((pokemon) => (
           <Card
-            set={(param) => setInfoPokeCard(param)}
+            set={(param) => setDialogCard(param)}
             key={pokemon.id}
             input={pokemon}
           />
@@ -40,8 +41,8 @@ function PagListOrd() {
           setPag(pag);
         }}
       />
-      {infoPokeCard && (
-        <InfoPoke poke={infoPokeCard} set={(param) => setInfoPokeCard(param)} />
+      {dialogCard && (
+        <Dialogcard poke={dialogCard} set={(param) => setDialogCard(param)} />
       )}
     </BodyPag>
   );

@@ -1,9 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 
-export const PagContext = createContext();
-PagContext.displayName = "PagContext";
+export const PagFavoriteContext = createContext();
+PagFavoriteContext.displayName = "PagFavoriteContext";
 
-export function PagContextProvider({ children }) {
+export function PagFavoriteContextProvider({ children }) {
   const [list, setList] = useState([]);
 
   const [lengthList, setLengthList] = useState(0);
@@ -12,19 +12,15 @@ export function PagContextProvider({ children }) {
 
   const [dialogCard, setDialogCard] = useState(null);
 
-  const location = new String(window.location.pathname);
-
   useEffect(() => {
-    fetch(`http://192.168.0.95:4111${location}/${pag}`)
-      .then((resp) => resp.json())
-      .then((resp) => {
-        setList(resp.response);
-        setLengthList(resp.lengthList);
-      });
+    const values = Object.values(localStorage);
+    const listTreat = values.map((value) => JSON.parse(value));
+    setList(listTreat);
+    setLengthList(localStorage.length);
   }, [pag]);
 
   return (
-    <PagContext.Provider
+    <PagFavoriteContext.Provider
       value={{
         list,
         lengthList,
@@ -34,6 +30,6 @@ export function PagContextProvider({ children }) {
       }}
     >
       {children}
-    </PagContext.Provider>
+    </PagFavoriteContext.Provider>
   );
 }
