@@ -17,7 +17,7 @@ export function PagFavoriteContextProvider({ children }) {
     const listTreat = values.map((value) => JSON.parse(value));
     setList(listTreat);
     setLengthList(localStorage.length);
-  }, [pag]);
+  }, [dialogCard]);
 
   return (
     <PagFavoriteContext.Provider

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Overlay = styled.div`
@@ -16,21 +17,28 @@ const DialogContanier = styled.dialog`
   background-color: white;
 `;
 
-function setFavorite(poke) {
-  if (localStorage.getItem(poke.name)) {
-    localStorage.removeItem(poke.name);
-  } else {
-    localStorage.setItem(poke.name, JSON.stringify(poke));
-  }
-}
-
 function DialogCard({ poke, set }) {
+  const initialIcon = localStorage.getItem(poke.name)
+    ? "/iconsHearts/heartBlack.png"
+    : "/iconsHearts/heartWhite.png";
+
+  let [icon, setIcon] = useState(initialIcon);
+
+  function setFavorite(poke) {
+    if (localStorage.getItem(poke.name)) {
+      localStorage.removeItem(poke.name);
+      setIcon("/iconsHearts/heartWhite.png");
+    } else {
+      localStorage.setItem(poke.name, JSON.stringify(poke));
+      setIcon("/iconsHearts/heartBlack.png");
+    }
+  }
   return (
     <>
       <Overlay />
       <DialogContanier open={!!poke}>
         <button onClick={() => set(null)}>X</button>
-        <button onClick={() => setFavorite(poke)}>FAVORITE</button>
+        <img src={icon} onClick={() => setFavorite(poke)} />
         <p>{poke.name}</p>
         <p>{poke.id}</p>
         <img src={poke.img[0]} />
