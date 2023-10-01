@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Card from "components/Card";
 import InfoPoke from "components/DialogCard";
 import { Pagination } from "@mui/material";
-import { PagContext, usePagContext } from "context/PagContext";
+import { usePagContext } from "context/PagContext";
 
 const MainContanierListPokemons = styled.main`
   margin: 2em;
@@ -21,7 +21,7 @@ const BodyPag = styled.div`
 
 function PagListOrd() {
   const { list, lengthList, setPag, infoPokeCard, setInfoPokeCard } =
-    usePagContext(PagContext);
+    usePagContext();
 
   return (
     <BodyPag>
