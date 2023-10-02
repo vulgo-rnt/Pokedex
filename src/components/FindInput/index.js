@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import DialogCard from "components/DialogCard";
 
 const DivContanier = styled.div`
+  label {
+    z-index: 0;
+  }
   width: 250px;
 `;
 
