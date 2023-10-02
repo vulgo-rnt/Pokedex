@@ -12,6 +12,10 @@ const CardContanier = styled.span`
   align-items: center;
   justify-content: space-around;
 
+  &:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  }
+
   img {
     max-width: 60px;
     max-height: 60px;
@@ -46,6 +50,7 @@ function Card({ input, set }) {
         <p>{pokeName}</p>
         <p>#{pokeId}</p>
       </div>
+
       <TypesPokemons types={poke.types} />
     </CardContanier>
   );
