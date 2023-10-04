@@ -12,12 +12,20 @@ export function PagFavoriteContextProvider({ children }) {
 
   const [dialogCard, setDialogCard] = useState(null);
 
+  function limit(arr) {
+    return arr.filter((value, index) => index < 27);
+  }
+
   useEffect(() => {
     const values = Object.values(localStorage);
-    const listTreat = values.map((value) => JSON.parse(value));
-    setList(listTreat);
+    const listJson = values.map((value) => JSON.parse(value));
+
+    const listSkipLimit =
+      pag === 1 ? limit(listJson) : limit(listJson.splice((pag - 1) * 27));
+
+    setList(listSkipLimit);
     setLengthList(localStorage.length);
-  }, [dialogCard]);
+  }, [dialogCard, pag]);
 
   return (
     <PagFavoriteContext.Provider
