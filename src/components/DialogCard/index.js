@@ -1,3 +1,4 @@
+import BaseStats from "./BaseStats";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -11,10 +12,23 @@ const Overlay = styled.div`
 `;
 
 const DialogContanier = styled.dialog`
+  font-family: "Pokemon Classic Regular";
   position: fixed;
   width: 60vw;
   top: 5%;
   background-color: white;
+
+  text-align: center;
+  display: grid;
+
+  .pokeImg {
+    width: 100px;
+  }
+  button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
 `;
 
 function DialogCard({ poke, set }) {
@@ -33,15 +47,17 @@ function DialogCard({ poke, set }) {
       setIcon("/iconsHearts/heartBlack.png");
     }
   }
+
   return (
     <>
       <Overlay />
       <DialogContanier open={!!poke}>
         <button onClick={() => set(null)}>X</button>
+        <img className="pokeImg" src={poke.img[0]} />
         <img src={icon} onClick={() => setFavorite(poke)} />
         <p>{poke.name}</p>
         <p>{poke.id}</p>
-        <img src={poke.img[0]} />
+        <BaseStats stats={poke.stats} />
       </DialogContanier>
     </>
   );
