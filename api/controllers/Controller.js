@@ -5,6 +5,13 @@ export class Controller {
     const response = await db.findOne({ name: `${req.params.name}` });
     res.send(response);
   }
+
+  static async sendOneImg(req, res) {
+    const response = await db.findOne({ name: `${req.params.name}` });
+    const resp = response.img;
+    res.send(resp);
+  }
+
   static async sendAll(req, res) {
     const response = await db
       .find()
@@ -15,6 +22,7 @@ export class Controller {
 
     res.send({ response: response, lengthList: lengthList });
   }
+
   static async sendRegion(req, res) {
     const query = {
       ["region"]: { $in: [req.params.region] },
@@ -29,6 +37,7 @@ export class Controller {
 
     res.send({ response: response, lengthList: lengthList });
   }
+
   static async sendType(req, res) {
     const query = {
       ["types"]: { $in: [req.params.type] },

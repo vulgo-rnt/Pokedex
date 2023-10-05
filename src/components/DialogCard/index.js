@@ -1,6 +1,7 @@
 import BaseStats from "./BaseStats";
 import { useState } from "react";
 import styled from "styled-components";
+import Evolutions from "./Evolutions";
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -57,7 +58,10 @@ function DialogCard({ poke, set }) {
         <img src={icon} onClick={() => setFavorite(poke)} />
         <p>{poke.name}</p>
         <p>{poke.id}</p>
-        <BaseStats stats={poke.stats} />
+        <section>
+          <BaseStats stats={poke.stats} />
+          <Evolutions evolutions={poke.evolutions} />
+        </section>
       </DialogContanier>
     </>
   );

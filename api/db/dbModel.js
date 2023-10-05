@@ -11,6 +11,7 @@ const pokemon = new Schema({
   types: Array,
   img: Array,
   region: String,
+  evolutions: Array,
 });
 
 const Model = mongoose.model("pokemon", pokemon);
