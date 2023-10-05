@@ -7,11 +7,11 @@ const StatsContanier = styled.div`
   margin: auto;
 `;
 
-function BaseStats({ stats }) {
+function BaseStats({ stats, hidden }) {
   const normalise = (value, max) => ((value - 0) * 100) / (max - 0);
 
   return (
-    <StatsContanier>
+    <StatsContanier hidden={hidden}>
       <div>
         <p>HP = {stats.hp}</p>
         <LinearProgress

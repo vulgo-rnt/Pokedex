@@ -37,7 +37,8 @@ function DialogCard({ poke, set }) {
     ? "/iconsHearts/heartBlack.png"
     : "/iconsHearts/heartWhite.png";
 
-  let [icon, setIcon] = useState(initialIcon);
+  const [icon, setIcon] = useState(initialIcon);
+  const [select, setSelect] = useState([true, false]);
 
   function setFavorite(poke) {
     if (localStorage.getItem(poke.name)) {
@@ -59,8 +60,8 @@ function DialogCard({ poke, set }) {
         <p>{poke.name}</p>
         <p>{poke.id}</p>
         <section>
-          <BaseStats stats={poke.stats} />
-          <Evolutions evolutions={poke.evolutions} />
+          <BaseStats stats={poke.stats} hidden={select[0]} />
+          <Evolutions evolutions={poke.evolutions} hidden={select[1]} />
         </section>
       </DialogContanier>
     </>
