@@ -35,10 +35,8 @@ function FindInput() {
             <TextField
               {...params}
               label={"Find Pokemon"}
-              onKeyUp={(event) => {
-                if (event.key === "Enter") {
-                  setInputValue(event.target.value);
-                }
+              onBlur={(event) => {
+                setInputValue(event.target.value);
               }}
             />
           )}

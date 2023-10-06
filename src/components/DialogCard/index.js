@@ -26,7 +26,7 @@ const DialogContanier = styled.dialog`
     width: 100px;
   }
   section {
-    background-color: red;
+    background-color: grey;
     border-radius: 0 0 10px 10px;
     padding: 16px;
   }
@@ -49,7 +49,7 @@ const ButtonNavContanier = styled.button`
   font-family: "Pokemon Classic Regular";
   padding: 0 4.5px 1px 4.5px;
   border-radius: 10px 10px 0 0;
-  background-color: ${(props) => (props.btnSelect ? "transparent" : "red")};
+  background-color: ${(props) => (props.btnSelect ? "transparent" : "grey")};
 `;
 
 function DialogCard({ poke, set }) {

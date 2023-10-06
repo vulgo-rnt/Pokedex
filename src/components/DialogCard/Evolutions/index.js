@@ -31,13 +31,19 @@ export default function Evolutions({ evolutions, hidden }) {
   return (
     <div hidden={hidden}>
       {firstPhase.length > 0 && (
-        <img style={{ width: "50px" }} src={firstPhase[0]} />
+        <img style={{ width: "50px" }} src={firstPhase[1]} />
       )}
       {secondPhase.length > 0 && (
-        <img style={{ width: "50px" }} src={secondPhase[0][0]} />
+        <img
+          style={{ width: "50px" }}
+          src={secondPhase[0][1] || secondPhase[0][0]}
+        />
       )}
       {thirdPhase.length > 0 && (
-        <img style={{ width: "50px" }} src={thirdPhase[0][0]} />
+        <img
+          style={{ width: "50px" }}
+          src={thirdPhase[0][1] || thirdPhase[0][0]}
+        />
       )}
     </div>
   );
