@@ -1,5 +1,16 @@
 import db from "../db/dbModel.js";
 
+async function findInDB(req, res, query = null) {
+  const response = await db
+    .find(query)
+    .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
+    .limit(27);
+
+  const lengthList = await db.countDocuments(query);
+
+  res.send({ response: response, lengthList: lengthList });
+}
+
 export class Controller {
   static async sendOne(req, res) {
     const response = await db.findOne({ name: `${req.params.name}` });
@@ -15,14 +26,7 @@ export class Controller {
   }
 
   static async sendAll(req, res) {
-    const response = await db
-      .find()
-      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
-      .limit(27);
-
-    const lengthList = await db.countDocuments();
-
-    res.send({ response: response, lengthList: lengthList });
+    await findInDB(req, res);
   }
 
   static async sendRegion(req, res) {
@@ -30,14 +34,7 @@ export class Controller {
       ["region"]: { $in: [req.params.region] },
     };
 
-    const response = await db
-      .find(query)
-      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
-      .limit(27);
-
-    const lengthList = await db.countDocuments(query);
-
-    res.send({ response: response, lengthList: lengthList });
+    await findInDB(req, res, query);
   }
 
   static async sendType(req, res) {
@@ -45,16 +42,6 @@ export class Controller {
       ["types"]: { $in: [req.params.type] },
     };
 
-    const response = await db
-      .find(query)
-      .skip(req.params.pag === 1 ? 0 : (req.params.pag - 1) * 27)
-      .limit(27);
-
-    const lengthList = await db.countDocuments(query);
-
-    res.send({
-      response: response,
-      lengthList: lengthList,
-    });
+    await findInDB(req, res, query);
   }
 }
