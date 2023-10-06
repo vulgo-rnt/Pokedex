@@ -2,6 +2,7 @@ import BaseStats from "./BaseStats";
 import { useState } from "react";
 import styled from "styled-components";
 import Evolutions from "./Evolutions";
+import HeartFavorite from "components/HeartFavorite";
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -18,47 +19,55 @@ const DialogContanier = styled.dialog`
   width: 60vw;
   top: 5%;
   background-color: white;
-
   text-align: center;
   display: grid;
 
   .pokeImg {
     width: 100px;
   }
+  section {
+    background-color: red;
+    border-radius: 0 0 10px 10px;
+    padding: 16px;
+  }
+`;
+
+const ClosedContanier = styled.button`
+  position: absolute;
+  top: -10px;
+  right: -10px;
+`;
+
+const NavContanier = styled.nav`
+  display: flex;
+  gap: 8px;
+  font-size: small;
+  justify-content: space-between;
   button {
-    position: absolute;
-    top: -10px;
-    right: -10px;
+    border: none;
+    font-family: "Pokemon Classic Regular";
+    padding: 0 4.5px 1px 4.5px;
+    border-radius: 10px 10px 0 0;
+    background-color: red;
   }
 `;
 
 function DialogCard({ poke, set }) {
-  const initialIcon = localStorage.getItem(poke.name)
-    ? "/iconsHearts/heartBlack.png"
-    : "/iconsHearts/heartWhite.png";
-
-  const [icon, setIcon] = useState(initialIcon);
   const [select, setSelect] = useState([true, false]);
-
-  function setFavorite(poke) {
-    if (localStorage.getItem(poke.name)) {
-      localStorage.removeItem(poke.name);
-      setIcon("/iconsHearts/heartWhite.png");
-    } else {
-      localStorage.setItem(poke.name, JSON.stringify(poke));
-      setIcon("/iconsHearts/heartBlack.png");
-    }
-  }
 
   return (
     <>
       <Overlay />
       <DialogContanier open={!!poke}>
-        <button onClick={() => set(null)}>X</button>
+        <ClosedContanier onClick={() => set(null)}>X</ClosedContanier>
         <img className="pokeImg" src={poke.img[0]} />
-        <img src={icon} onClick={() => setFavorite(poke)} />
+        <HeartFavorite poke={poke} />
         <p>{poke.name}</p>
         <p>{poke.id}</p>
+        <NavContanier>
+          <button onClick={() => setSelect([false, true])}>Stats</button>
+          <button onClick={() => setSelect([true, false])}>Evolutions</button>
+        </NavContanier>
         <section>
           <BaseStats stats={poke.stats} hidden={select[0]} />
           <Evolutions evolutions={poke.evolutions} hidden={select[1]} />
