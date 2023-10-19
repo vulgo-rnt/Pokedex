@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Evolutions from "./Evolutions";
 import HeartFavorite from "components/HeartFavorite";
 import { treatID, treatName } from "useful/traetString";
+import { bgForTimes } from "useful/bgForTimes";
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -36,7 +37,7 @@ const HeaderContanier = styled.div`
   }
 `;
 const BlockImgContanier = styled.div`
-  background: url("/bgDay.png");
+  background: url(${() => bgForTimes()});
   background-size: 100%;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
