@@ -1,10 +1,8 @@
 import { LinearProgress } from "@mui/material";
 import styled from "styled-components";
 
-const StatsContanier = styled.div`
+const StatsContanier = styled.span`
   font-size: 8px;
-  width: 95%;
-  margin: auto;
 `;
 
 function BaseStats({ stats, hidden }) {
@@ -12,54 +10,54 @@ function BaseStats({ stats, hidden }) {
 
   return (
     <StatsContanier hidden={hidden}>
-      <div>
-        <p>HP = {stats.hp}</p>
+      <label>
+        HP = {stats.hp}
         <LinearProgress
           value={normalise(stats.hp, 255)}
           variant="determinate"
           color="secondary"
         />
-      </div>
-      <div>
-        <p>Attack = {stats.attack}</p>
+      </label>
+      <label>
+        Attack = {stats.attack}{" "}
         <LinearProgress
           value={normalise(stats.attack, 190)}
           variant="determinate"
           color="secondary"
         />
-      </div>
-      <div>
-        <p>Defense = {stats.defense}</p>
+      </label>
+      <label>
+        Defense = {stats.defense}{" "}
         <LinearProgress
           value={normalise(stats.defense, 250)}
           variant="determinate"
           color="secondary"
         />
-      </div>
-      <div>
-        <p>Special-Attack = {stats["special-attack"]}</p>
+      </label>
+      <label>
+        Special-Attack = {stats["special-attack"]}
         <LinearProgress
           value={normalise(stats["special-attack"], 250)}
           variant="determinate"
           color="secondary"
         />
-      </div>
-      <div>
-        <p>Special-Defense = {stats["special-defense"]}</p>
+      </label>
+      <label>
+        Special-Defense = {stats["special-defense"]}{" "}
         <LinearProgress
           value={normalise(stats["special-defense"], 250)}
           variant="determinate"
           color="secondary"
         />
-      </div>
-      <div>
-        <p>Speed = {stats.speed}</p>
+      </label>
+      <label>
+        Speed = {stats.speed}{" "}
         <LinearProgress
           value={normalise(stats.speed, 250)}
           variant="determinate"
           color="secondary"
         />
-      </div>
+      </label>
     </StatsContanier>
   );
 }

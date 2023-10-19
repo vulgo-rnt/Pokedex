@@ -23,6 +23,7 @@ const DialogContanier = styled.dialog`
   text-align: center;
   display: grid;
   border-radius: 16px;
+  gap: 16px;
 `;
 const HeaderContanier = styled.div`
   position: relative;
@@ -40,7 +41,7 @@ const BlockImgContanier = styled.div`
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  margin: 10px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,7 +51,7 @@ const BlockImgContanier = styled.div`
     position: absolute;
     top: -6%;
     right: -3%;
-    padding: 0 2% 2% 2%;
+    padding: 0 2% 1% 2%;
     margin: 0;
     background-color: white;
     border-radius: 8px;
@@ -66,7 +67,7 @@ const BlockImgContanier = styled.div`
 const MoreInfosContanier = styled.div`
   margin: auto;
   section {
-    padding: 16px;
+    padding: 0 16px 16px 16px;
     background-color: grey;
     border-radius: 0 0 20px 20px;
   }
