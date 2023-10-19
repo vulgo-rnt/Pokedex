@@ -21,11 +21,6 @@ const CardContanier = styled.span`
     max-height: 60px;
     margin-left: 6px;
   }
-  p {
-    color: #000000;
-    font: 400 8px "Pokemon Classic", sans-serif;
-    font-family: "Pokemon Classic Regular";
-  }
 `;
 
 function Card({ input, set }) {

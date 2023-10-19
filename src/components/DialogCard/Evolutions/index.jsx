@@ -14,7 +14,6 @@ export default function Evolutions({ evolutions, hidden }) {
         fetch(`http://192.168.0.95:4111/imgPokemon/${param}`)
           .then((res) => res.json())
           .then((res) => {
-            console.log(res);
             setSecondPhase((old) => [...old, res]);
           });
       });

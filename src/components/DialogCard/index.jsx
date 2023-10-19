@@ -14,7 +14,6 @@ const Overlay = styled.div`
 `;
 
 const DialogContanier = styled.dialog`
-  font-family: "Pokemon Classic Regular";
   position: fixed;
   width: 60vw;
   top: 5%;
@@ -34,19 +33,22 @@ const DialogContanier = styled.dialog`
 
 const ClosedContanier = styled.button`
   position: absolute;
+  color: white;
+  background-color: #911515;
   top: -10px;
   right: -10px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 `;
 
 const NavContanier = styled.nav`
   display: flex;
-  gap: 8px;
   font-size: small;
   justify-content: space-between;
 `;
 const ButtonNavContanier = styled.button`
   border: none;
-  font-family: "Pokemon Classic Regular";
   padding: 0 4.5px 1px 4.5px;
   border-radius: 10px 10px 0 0;
   background-color: ${(props) => (props?.$bg ? "transparent" : "grey")};
@@ -59,11 +61,13 @@ function DialogCard({ poke, set }) {
     <>
       <Overlay />
       <DialogContanier open={!!poke}>
-        <ClosedContanier onClick={() => set(null)}>X</ClosedContanier>
-        <img className="pokeImg" src={poke.img[0]} />
-        <HeartFavorite poke={poke} />
         <p>{poke.name}</p>
+        <ClosedContanier onClick={() => set(null)}>X</ClosedContanier>
+        <HeartFavorite poke={poke} />
+
         <p>{poke.id}</p>
+        <img className="pokeImg" src={poke.img[0]} />
+
         <NavContanier>
           <ButtonNavContanier $bg={select[0]} onClick={() => setSelect([0, 1])}>
             Stats

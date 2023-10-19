@@ -6,12 +6,10 @@ const MainContanier = styled.main`
   h2 {
     margin-left: 10%;
     text-decoration: underline;
-    font-family: "Pokemon Classic Regular";
   }
   button {
     height: auto;
     margin: 10px;
-    font-family: "Pokemon Classic Regular";
     font-size: 20px;
     color: black;
     border: outset 2px black;
