@@ -29,15 +29,12 @@ const ResetStyled = createGlobalStyle`
   a{
     text-decoration: none;
   }
-  button{
+  *{
     font-family: "Pokemon Classic Regular";
   }
 `;
 
 const GlobalStyled = styled.div`
-  & {
-    font-family: "Pokemon Classic Regular";
-  }
   box-sizing: border-box;
   min-height: 100vh;
   background-color: #dc0a2d;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TypesPokemons from "components/TypesPokemons";
+import { treatID, treatName } from "useful/traetString";
 
 const CardContanier = styled.span`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -11,6 +12,7 @@ const CardContanier = styled.span`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  font-size: 10px;
 
   &:hover {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
@@ -19,20 +21,11 @@ const CardContanier = styled.span`
   img {
     max-width: 60px;
     max-height: 60px;
-    margin-left: 6px;
   }
 `;
 
 function Card({ input, set }) {
   const poke = input;
-
-  let pokeId = 0;
-  if (poke.id < 10) pokeId = `00${poke.id}`;
-  else if (poke.id < 100) pokeId = `0${poke.id}`;
-  else pokeId = poke.id;
-
-  let pokeName =
-    poke.name[0].toUpperCase() + poke.name.substring(1).replace(/-/g, " ");
 
   return (
     <CardContanier
@@ -42,8 +35,8 @@ function Card({ input, set }) {
     >
       <img src={poke.img?.[1] || poke.img?.[0]} />
       <div>
-        <p>{pokeName}</p>
-        <p>#{pokeId}</p>
+        <p>{treatName(poke.name)}</p>
+        <p>#{treatID(poke.id)}</p>
       </div>
 
       <TypesPokemons types={poke.types} />

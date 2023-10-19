@@ -2,7 +2,7 @@ import { LinearProgress } from "@mui/material";
 import styled from "styled-components";
 
 const StatsContanier = styled.div`
-  font-size: 10px;
+  font-size: 8px;
   width: 95%;
   margin: auto;
 `;
