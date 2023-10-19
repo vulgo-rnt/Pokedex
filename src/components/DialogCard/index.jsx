@@ -49,11 +49,11 @@ const ButtonNavContanier = styled.button`
   font-family: "Pokemon Classic Regular";
   padding: 0 4.5px 1px 4.5px;
   border-radius: 10px 10px 0 0;
-  background-color: ${(props) => (props.btnSelect ? "transparent" : "grey")};
+  background-color: ${(props) => (props?.bgBtn ? "transparent" : "grey")};
 `;
 
 function DialogCard({ poke, set }) {
-  const [select, setSelect] = useState([true, false]);
+  const [select, setSelect] = useState([1, 0]);
 
   return (
     <>
@@ -66,14 +66,14 @@ function DialogCard({ poke, set }) {
         <p>{poke.id}</p>
         <NavContanier>
           <ButtonNavContanier
-            btnSelect={select[0]}
-            onClick={() => setSelect([false, true])}
+            bgBtn={select[0]}
+            onClick={() => setSelect([0, 1])}
           >
             Stats
           </ButtonNavContanier>
           <ButtonNavContanier
-            btnSelect={select[1]}
-            onClick={() => setSelect([true, false])}
+            bgBtn={select[1]}
+            onClick={() => setSelect([1, 0])}
           >
             Evolutions
           </ButtonNavContanier>

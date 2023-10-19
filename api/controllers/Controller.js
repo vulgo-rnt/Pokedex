@@ -19,10 +19,7 @@ export class Controller {
 
   static async sendOneImg(req, res) {
     const response = await db.findOne({ name: `${req.params.name}` });
-    const resp =
-      response?.img ||
-      "https://www.flaticon.com/br/icones-gratis/pagina-nao-encontrada";
-    res.send(resp);
+    res.send(response.img);
   }
 
   static async sendAll(req, res) {
