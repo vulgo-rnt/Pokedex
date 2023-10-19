@@ -49,7 +49,7 @@ const ButtonNavContanier = styled.button`
   font-family: "Pokemon Classic Regular";
   padding: 0 4.5px 1px 4.5px;
   border-radius: 10px 10px 0 0;
-  background-color: ${(props) => (props?.bgBtn ? "transparent" : "grey")};
+  background-color: ${(props) => (props?.$bg ? "transparent" : "grey")};
 `;
 
 function DialogCard({ poke, set }) {
@@ -65,16 +65,10 @@ function DialogCard({ poke, set }) {
         <p>{poke.name}</p>
         <p>{poke.id}</p>
         <NavContanier>
-          <ButtonNavContanier
-            bgBtn={select[0]}
-            onClick={() => setSelect([0, 1])}
-          >
+          <ButtonNavContanier $bg={select[0]} onClick={() => setSelect([0, 1])}>
             Stats
           </ButtonNavContanier>
-          <ButtonNavContanier
-            bgBtn={select[1]}
-            onClick={() => setSelect([1, 0])}
-          >
+          <ButtonNavContanier $bg={select[1]} onClick={() => setSelect([1, 0])}>
             Evolutions
           </ButtonNavContanier>
         </NavContanier>
