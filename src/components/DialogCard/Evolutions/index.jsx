@@ -5,6 +5,8 @@ export default function Evolutions({ evolutions, hidden }) {
   const [secondPhase, setSecondPhase] = useState([]);
   const [thirdPhase, setThirdPhase] = useState([]);
 
+  console.log(hidden);
+
   useEffect(() => {
     try {
       fetch(`http://192.168.0.95:4111/imgPokemon/${evolutions[0]}`)

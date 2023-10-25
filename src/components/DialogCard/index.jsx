@@ -98,7 +98,7 @@ const ButtonNavContanier = styled.button`
 `;
 
 function DialogCard({ poke, set }) {
-  const [select, setSelect] = useState([1, 0, 0]);
+  const [select, setSelect] = useState([0, 1, 1]);
 
   return (
     <>
@@ -118,13 +118,19 @@ function DialogCard({ poke, set }) {
           <NavContanier>
             <ButtonNavContanier
               $bg={select[0]}
-              onClick={() => setSelect([0, 1])}
+              onClick={() => setSelect([0, 1, 1])}
+            >
+              About
+            </ButtonNavContanier>
+            <ButtonNavContanier
+              $bg={select[1]}
+              onClick={() => setSelect([1, 0, 1])}
             >
               Stats
             </ButtonNavContanier>
             <ButtonNavContanier
-              $bg={select[1]}
-              onClick={() => setSelect([1, 0])}
+              $bg={select[2]}
+              onClick={() => setSelect([1, 1, 0])}
             >
               Evolutions
             </ButtonNavContanier>
