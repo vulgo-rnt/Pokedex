@@ -19,7 +19,7 @@ export class Controller {
 
   static async sendOneImg(req, res) {
     const response = await db.findOne({ name: `${req.params.name}` });
-    res.send(response.img);
+    res.send(response?.img);
   }
 
   static async sendAll(req, res) {

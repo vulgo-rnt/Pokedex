@@ -1,7 +1,5 @@
 function treatName(name) {
-  let pokeName = name[0].toUpperCase() + name.substring(1).replace(/-/g, " ");
-
-  return pokeName;
+  return name[0].toUpperCase() + name.substring(1).replace(/-/g, " ");
 }
 
 function treatID(id) {

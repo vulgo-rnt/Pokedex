@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TypesPokemons from "components/TypesPokemons";
 import { treatID, treatName } from "useful/traetString";
+import PokeName from "components/PokeName";
 
 const CardContanier = styled.span`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -35,7 +36,7 @@ function Card({ input, set }) {
     >
       <img src={poke.img?.[1] || poke.img?.[0]} />
       <div>
-        <p>{treatName(poke.name)}</p>
+        <PokeName>{treatName(poke.name)}</PokeName>
         <p>#{treatID(poke.id)}</p>
       </div>
 

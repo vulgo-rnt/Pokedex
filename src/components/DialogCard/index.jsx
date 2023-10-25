@@ -5,6 +5,8 @@ import Evolutions from "./Evolutions";
 import HeartFavorite from "components/HeartFavorite";
 import { treatID, treatName } from "useful/traetString";
 import { bgForTimes } from "useful/bgForTimes";
+import AboutInfoPoke from "./AboutInfoPoke";
+import PokeName from "components/PokeName";
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -96,7 +98,7 @@ const ButtonNavContanier = styled.button`
 `;
 
 function DialogCard({ poke, set }) {
-  const [select, setSelect] = useState([1, 0]);
+  const [select, setSelect] = useState([1, 0, 0]);
 
   return (
     <>
@@ -105,7 +107,7 @@ function DialogCard({ poke, set }) {
         <ClosedContanier onClick={() => set(null)}>X</ClosedContanier>
         <HeaderContanier>
           <HeartFavorite poke={poke} />
-          <p>{treatName(poke.name)}</p>
+          <PokeName>{treatName(poke.name)}</PokeName>
         </HeaderContanier>
 
         <BlockImgContanier>
@@ -129,8 +131,9 @@ function DialogCard({ poke, set }) {
           </NavContanier>
 
           <section>
-            <BaseStats stats={poke.stats} hidden={select[0]} />
-            <Evolutions evolutions={poke.evolutions} hidden={select[1]} />
+            <AboutInfoPoke info={poke} hidden={select[0]} />
+            <BaseStats stats={poke.stats} hidden={select[1]} />
+            <Evolutions evolutions={poke.evolutions} hidden={select[2]} />
           </section>
         </MoreInfosContanier>
       </DialogContanier>
