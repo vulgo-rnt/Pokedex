@@ -38,6 +38,11 @@ function FindInput() {
               onBlur={(event) => {
                 setInputValue(event.target.value);
               }}
+              onKeyUp={(event) => {
+                if (event.key === "Enter") {
+                  setInputValue(event.target.value);
+                }
+              }}
             />
           )}
         />

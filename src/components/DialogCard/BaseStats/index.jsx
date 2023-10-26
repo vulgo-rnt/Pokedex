@@ -1,15 +1,10 @@
 import { LinearProgress } from "@mui/material";
-import styled from "styled-components";
-
-const StatsContanier = styled.span`
-  font-size: 8px;
-`;
 
 function BaseStats({ stats, hidden }) {
   const normalise = (value, max) => ((value - 0) * 100) / (max - 0);
 
   return (
-    <StatsContanier hidden={hidden}>
+    <span hidden={hidden}>
       <label>
         HP = {stats.hp}
         <LinearProgress
@@ -58,7 +53,7 @@ function BaseStats({ stats, hidden }) {
           color="secondary"
         />
       </label>
-    </StatsContanier>
+    </span>
   );
 }
 

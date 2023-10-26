@@ -17,12 +17,13 @@ const Overlay = styled.div`
   right: 0;
 `;
 const DialogContanier = styled.dialog`
+  font-size: small;
   box-sizing: border-box;
   position: fixed;
   top: 5%;
   min-width: 60vw;
   max-height: 90vh;
-  background-color: white;
+  background-color: #f6f7eb;
   text-align: center;
   display: grid;
   border-radius: 16px;
@@ -68,22 +69,23 @@ const BlockImgContanier = styled.div`
   }
 `;
 const MoreInfosContanier = styled.div`
+  max-width: 60%;
   margin: auto;
   section {
-    padding: 0 16px 16px 16px;
-    background-color: grey;
+    padding: 10px 16px 16px 16px;
+    background-color: #273043;
     border-radius: 0 0 20px 20px;
   }
 `;
 const ClosedContanier = styled.button`
   position: absolute;
-  color: white;
-  background-color: #b93737;
+  color: #f6f7eb;
+  background-color: #273043;
   top: -10px;
   right: -10px;
   padding: 0 2px 3px 6px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: none;
 `;
 const NavContanier = styled.nav`
   display: flex;
@@ -94,7 +96,7 @@ const ButtonNavContanier = styled.button`
   border: none;
   padding: 0 4.5px 1px 4.5px;
   border-radius: 10px 10px 0 0;
-  background-color: ${(props) => (props?.$bg ? "transparent" : "grey")};
+  background-color: ${(props) => (props?.$bg ? "transparent" : "#273043")};
 `;
 
 function DialogCard({ poke, set }) {
@@ -105,6 +107,7 @@ function DialogCard({ poke, set }) {
       <Overlay />
       <DialogContanier open={!!poke}>
         <ClosedContanier onClick={() => set(null)}>X</ClosedContanier>
+
         <HeaderContanier>
           <HeartFavorite poke={poke} />
           <PokeName>{treatName(poke.name)}</PokeName>
@@ -114,6 +117,7 @@ function DialogCard({ poke, set }) {
           <p>#{treatID(poke.id)}</p>
           <img src={poke.img[0]} />
         </BlockImgContanier>
+
         <MoreInfosContanier>
           <NavContanier>
             <ButtonNavContanier
