@@ -20,7 +20,7 @@ function FindInput() {
 
   useEffect(() => {
     if (inputValue) {
-      fetch(`${originUrl}:4111/pokemon/${inputValue}`)
+      fetch(`${originUrl}/pokemon/${inputValue}`)
         .then((resp) => resp.json())
         .then((resp) => {
           setPokemon(resp);

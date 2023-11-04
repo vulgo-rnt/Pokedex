@@ -17,7 +17,7 @@ export function PagContextProvider({ children }) {
   const originUrl = new String(window.location.hostname);
 
   useEffect(() => {
-    fetch(`${originUrl}:4111${location}/${pag}`)
+    fetch(`${originUrl}${location}/${pag}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setList(resp.response);
