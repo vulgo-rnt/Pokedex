@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const PagContext = createContext();
 PagContext.displayName = "PagContext";
@@ -13,9 +14,10 @@ export function PagContextProvider({ children }) {
   const [dialogCard, setDialogCard] = useState(null);
 
   const location = new String(window.location.pathname);
+  const originUrl = new String(window.location.hostname);
 
   useEffect(() => {
-    fetch(`http://192.168.0.95:4111${location}/${pag}`)
+    fetch(`${originUrl}:4111${location}/${pag}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setList(resp.response);

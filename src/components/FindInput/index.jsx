@@ -16,9 +16,11 @@ function FindInput() {
 
   const [pokemon, setPokemon] = useState(null);
 
+  const originUrl = new String(window.location.hostname);
+
   useEffect(() => {
     if (inputValue) {
-      fetch(`http://192.168.0.95:4111/pokemon/${inputValue}`)
+      fetch(`${originUrl}:4111/pokemon/${inputValue}`)
         .then((resp) => resp.json())
         .then((resp) => {
           setPokemon(resp);
