@@ -2,7 +2,12 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html",
+      "destination": "/index.html"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
       "dest": "/api/app.js"
     }
   ]
