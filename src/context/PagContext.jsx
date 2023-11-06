@@ -14,10 +14,9 @@ export function PagContextProvider({ children }) {
   const [dialogCard, setDialogCard] = useState(null);
 
   const location = new String(window.location.pathname);
-  const originUrl = new String(window.location.hostname);
 
   useEffect(() => {
-    fetch(`${pag}`)
+    fetch(`https://pokedex-backend-vulgo-rnt.vercel.app${location}/${pag}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setList(resp.response);

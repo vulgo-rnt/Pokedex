@@ -16,11 +16,11 @@ function FindInput() {
 
   const [pokemon, setPokemon] = useState(null);
 
-  const originUrl = new String(window.location.hostname);
-
   useEffect(() => {
     if (inputValue) {
-      fetch(`${originUrl}/pokemon/${inputValue}`)
+      fetch(
+        `https://pokedex-backend-vulgo-rnt.vercel.app/pokemon/${inputValue}`
+      )
         .then((resp) => resp.json())
         .then((resp) => {
           setPokemon(resp);
