@@ -7,18 +7,24 @@ export default function Evolutions({ evolutions, hidden }) {
 
   useEffect(() => {
     try {
-      fetch(`http://192.168.0.95:4111/imgPokemon/${evolutions[0]}`)
+      fetch(
+        `https://pokedex-backend-vulgo-rnt.vercel.app/imgPokemon/${evolutions[0]}`
+      )
         .then((res) => res.json())
         .then((res) => setFirstPhase(res));
       evolutions[1].forEach((param) => {
-        fetch(`http://192.168.0.95:4111/imgPokemon/${param}`)
+        fetch(
+          `https://pokedex-backend-vulgo-rnt.vercel.app/imgPokemon/${param}`
+        )
           .then((res) => res.json())
           .then((res) => {
             setSecondPhase((old) => [...old, res]);
           });
       });
       evolutions[2].forEach((param) => {
-        fetch(`http://192.168.0.95:4111/imgPokemon/${param}`)
+        fetch(
+          `https://pokedex-backend-vulgo-rnt.vercel.app/imgPokemon/${param}`
+        )
           .then((res) => res.json())
           .then((res) => setThirdPhase((old) => [...old, res]));
       });
