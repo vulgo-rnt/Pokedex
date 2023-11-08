@@ -22,7 +22,8 @@ function App() {
       <GlobalStyled>
         <Header />
         <Routes>
-          <Route path="/" element={<PagSortSelection />} />
+          <Route path="/type/*" element={<PagListOrdWithContext />} />
+          <Route path="/region/*" element={<PagListOrdWithContext />} />
           <Route
             path="/favorite"
             element={
@@ -31,9 +32,8 @@ function App() {
               </PagFavoriteContextProvider>
             }
           />
-          <Route path="/type/*" element={<PagListOrdWithContext />} />
-          <Route path="/region/*" element={<PagListOrdWithContext />} />
           <Route path="/all" element={<PagListOrdWithContext />} />
+          <Route path="/" element={<PagSortSelection />} />
           <Route path="*" element={<div>Pagina não encontrada</div>} />
         </Routes>
       </GlobalStyled>
