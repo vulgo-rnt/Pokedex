@@ -17,9 +17,7 @@ export default function Evolutions({ evolutions, hidden }) {
           `https://pokedex-backend-vulgo-rnt.vercel.app/imgPokemon/${param}`
         )
           .then((res) => res.json())
-          .then((res) => {
-            setSecondPhase((old) => [...old, res]);
-          });
+          .then((res) => setSecondPhase((old) => [...old, res]));
       });
       evolutions[2].forEach((param) => {
         fetch(
