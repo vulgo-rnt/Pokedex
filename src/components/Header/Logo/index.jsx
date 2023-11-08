@@ -8,7 +8,7 @@ const LogoContainer = styled.div`
 
   h1 {
     text-decoration: none;
-    color: #0a090c;
+    color: black;
   }
   img {
     height: 80px;

@@ -23,9 +23,6 @@ const CardContanier = styled.span`
     max-width: 60px;
     max-height: 60px;
   }
-  p {
-    color: #0a090c;
-  }
 `;
 
 function Card({ input, set }) {

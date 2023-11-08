@@ -28,7 +28,7 @@ const ResetStyled = createGlobalStyle`
 const GlobalStyled = styled.div`
   box-sizing: border-box;
   min-height: 100vh;
-  background-color: #dc0a2d;
+  background-color: #f50a32;
   padding: 0 3em;
 `;
 

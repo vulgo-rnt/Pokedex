@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const MainContanier = styled.main`
   margin: 32px;
-  color: #0a090c;
   h2 {
     margin-left: 10%;
     text-decoration: underline;
@@ -12,8 +11,7 @@ const MainContanier = styled.main`
     height: auto;
     margin: 10px;
     font-size: 20px;
-    color: #0a090c;
-    border: outset 2px #0a090c;
+    border: outset 2px black;
     padding: 10px 10px 15px 10px;
     border-radius: 20px;
     background-color: transparent;
