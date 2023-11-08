@@ -17,6 +17,12 @@ const MainContanier = styled.main`
     border-radius: 20px;
     background-color: transparent;
   }
+  @media (max-width: 730px) {
+    margin: 32px 0;
+    button {
+      font-size: 15px;
+    }
+  }
 `;
 
 const regions = [

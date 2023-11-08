@@ -9,9 +9,18 @@ const LogoContainer = styled.div`
     text-decoration: none;
     color: black;
   }
+  img {
+    height: 80px;
+    width: 80px;
+    margin: auto;
+  }
   @media (max-width: 730px) {
     h1 {
       display: none;
+    }
+    img {
+      height: 50px;
+      width: 50px;
     }
   }
 `;
@@ -20,11 +29,7 @@ function Logo() {
   return (
     <Link to="/">
       <LogoContainer>
-        <img
-          src="/pokedex-icon.png"
-          alt="logo"
-          style={{ width: "80px", margin: "auto" }}
-        />
+        <img src="/pokedex-icon.png" alt="logo" />
         <h1>Pokedex</h1>
       </LogoContainer>
     </Link>

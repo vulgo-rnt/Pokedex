@@ -9,6 +9,9 @@ const DivContanier = styled.div`
     z-index: 0;
   }
   width: 250px;
+  @media (max-width: 730px) {
+    width: 150px;
+  }
 `;
 
 function FindInput() {
