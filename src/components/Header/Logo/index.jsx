@@ -5,9 +5,10 @@ const LogoContainer = styled.div`
   display: flex;
   gap: 1em;
   font-family: "Pokemon Classic Regular";
+
   h1 {
     text-decoration: none;
-    color: black;
+    color: #0a090c;
   }
   img {
     height: 80px;
