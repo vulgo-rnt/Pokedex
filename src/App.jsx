@@ -24,16 +24,16 @@ function App() {
         <Routes>
           <Route path="/" element={<PagSortSelection />} />
           <Route
-            path="favorite"
+            path="/favorite"
             element={
               <PagFavoriteContextProvider>
                 <PagListOrd context={PagFavoriteContext} />
               </PagFavoriteContextProvider>
             }
           />
-          <Route path="type/*" element={<PagListOrdWithContext />} />
-          <Route path="region/*" element={<PagListOrdWithContext />} />
-          <Route path="all" element={<PagListOrdWithContext />} />
+          <Route path="/type/*" element={<PagListOrdWithContext />} />
+          <Route path="/region/*" element={<PagListOrdWithContext />} />
+          <Route path="/all" element={<PagListOrdWithContext />} />
           <Route path="*" element={<div>Pagina não encontrada</div>} />
         </Routes>
       </GlobalStyled>
